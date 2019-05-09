@@ -1,0 +1,9 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Weather App" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="uk.ac.cam.gr3.weather.WeatherApp" />
+    <module name="Interaction Design" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
