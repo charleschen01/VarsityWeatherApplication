@@ -1,13 +1,8 @@
 package uk.ac.cam.gr3.weather.gui.util;
 
 import javafx.animation.TranslateTransition;
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.event.EventType;
 import javafx.scene.Node;
-import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
@@ -29,61 +24,16 @@ public class HSwipeContainer extends Region {
 
         content = new HBox(left, centre, right);
 
-        displaying.addListener((observable, oldValue, newValue) -> {
-
-            double target = -newValue.intValue() * this.screenWidth;
-            double current = content.getTranslateX();
-
-            if (transition != null)
-                transition.stop();
-
-            double translateBy = target - current;
-
-            transition = new TranslateTransition(Duration.millis(Math.abs(translateBy) / 2), content);
-
-            transition.setByX(translateBy);
-            transition.play();
-
-            transition.setOnFinished(event -> transition = null);
-        });
-
         setDisplaying(CENTRE);
 
         getChildren().add(content);
 
-        /*addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
-            MouseButton button = e.getButton();
-
-            EventType<SwipeEvent> type;
-
-            if (button == MouseButton.PRIMARY) {
-                type = SwipeEvent.SWIPE_LEFT;
-            } else if (button == MouseButton.SECONDARY) {
-                type = SwipeEvent.SWIPE_RIGHT;
-            } else {
-                return;
-            }
-
-            SwipeEvent event = new SwipeEvent(type, 0, 0, 0, 0, false, false, false, false, false, 1, null);
-
-            e.consume();
-
-            fireEvent(event);
-        });
-
-        addEventHandler(SwipeEvent.SWIPE_LEFT, e -> {
-
-            if (getDisplaying() != RIGHT)
-                setDisplaying(getDisplaying() + 1);
-        });
-
-        addEventHandler(SwipeEvent.SWIPE_RIGHT, e -> {
-
-            if (getDisplaying() != LEFT)
-                setDisplaying(getDisplaying() - 1);
-        });*/
-
         addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+
+            if (transition != null) {
+                transition.stop();
+                transition = null;
+            }
 
             double containerX = e.getX();
             dragStartX = containerX - content.getTranslateX();
@@ -96,20 +46,28 @@ public class HSwipeContainer extends Region {
 
             content.setTranslateX(Util.clamp(translateX, -2 * screenWidth, 0));
         });
-    }
 
-    private IntegerProperty displaying = new SimpleIntegerProperty();
+        addEventHandler(MouseEvent.MOUSE_RELEASED, e -> {
 
-    public IntegerProperty displayingProperty() {
-        return displaying;
-    }
-
-    public int getDisplaying() {
-        return displaying.get();
+            setDisplaying((int) Math.round(-content.getTranslateX() / screenWidth));
+        });
     }
 
     public void setDisplaying(int displaying) {
-        this.displaying.set(displaying);
+        double target = -displaying * this.screenWidth;
+        double current = content.getTranslateX();
+
+        if (transition != null)
+            transition.stop();
+
+        double translateBy = target - current;
+
+        transition = new TranslateTransition(Duration.millis(Math.abs(translateBy) / 2), content);
+
+        transition.setByX(translateBy);
+        transition.play();
+
+        transition.setOnFinished(event -> transition = null);
     }
 
     @Override
