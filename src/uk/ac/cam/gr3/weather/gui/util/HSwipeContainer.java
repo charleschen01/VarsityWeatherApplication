@@ -11,6 +11,7 @@ import javafx.scene.input.SwipeEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.util.Duration;
+import uk.ac.cam.gr3.weather.Util;
 
 public class HSwipeContainer extends Region {
 
@@ -19,6 +20,8 @@ public class HSwipeContainer extends Region {
     private final HBox content;
     private final int screenWidth;
     private TranslateTransition transition;
+
+    private double dragStartX;
 
     public HSwipeContainer(Node left, Node centre, Node right, int screenWidth) {
 
@@ -48,7 +51,7 @@ public class HSwipeContainer extends Region {
 
         getChildren().add(content);
 
-        addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
+        /*addEventHandler(MouseEvent.MOUSE_CLICKED, e -> {
             MouseButton button = e.getButton();
 
             EventType<SwipeEvent> type;
@@ -78,6 +81,20 @@ public class HSwipeContainer extends Region {
 
             if (getDisplaying() != LEFT)
                 setDisplaying(getDisplaying() - 1);
+        });*/
+
+        addEventHandler(MouseEvent.MOUSE_PRESSED, e -> {
+
+            double containerX = e.getX();
+            dragStartX = containerX - content.getTranslateX();
+        });
+
+        addEventHandler(MouseEvent.MOUSE_DRAGGED, e -> {
+
+            double containerX = e.getX();
+            double translateX = containerX - dragStartX;
+
+            content.setTranslateX(Util.clamp(translateX, -2 * screenWidth, 0));
         });
     }
 
