@@ -10,7 +10,7 @@ import uk.ac.cam.gr3.weather.Util;
 
 public class HSwipeContainer extends Region {
 
-    public static final int LEFT = 0, CENTRE = 1, RIGHT = 2;
+    public static final int SNOW_REPORT = 0, HOME_SCREEN = 1, WEEKLY_REPORT = 2;
 
     private final HBox content;
     private final int screenWidth;
@@ -24,7 +24,7 @@ public class HSwipeContainer extends Region {
 
         content = new HBox(left, centre, right);
 
-        setDisplaying(CENTRE);
+        setDisplaying(HOME_SCREEN);
 
         getChildren().add(content);
 
