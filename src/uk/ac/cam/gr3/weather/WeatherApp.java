@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import uk.ac.cam.gr3.weather.gui.FrameController;
+import uk.ac.cam.gr3.weather.gui.panes.SnowPane;
 import uk.ac.cam.gr3.weather.gui.util.HSwipeContainer;
 
 public class WeatherApp extends Application {
@@ -26,7 +27,8 @@ public class WeatherApp extends Application {
 
         Scene scene = new Scene(frame);
 
-        Pane left = new Pane(), centre = new Pane(), right = new Pane();
+        SnowPane left = new SnowPane();
+        Pane centre = new Pane(), right = new Pane();
 
         int width = (int) frame.getPrefWidth();
         int height = (int) frame.getPrefHeight();
