@@ -7,6 +7,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import uk.ac.cam.gr3.weather.gui.FrameController;
+import uk.ac.cam.gr3.weather.gui.WeeklyReportController;
 import uk.ac.cam.gr3.weather.gui.panes.SnowPane;
 import uk.ac.cam.gr3.weather.gui.util.HSwipeContainer;
 
@@ -28,7 +29,14 @@ public class WeatherApp extends Application {
         Scene scene = new Scene(frame);
 
         SnowPane left = new SnowPane();
-        Pane centre = new Pane(), right = new Pane();
+
+        FXMLLoader weekLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/weekly.fxml"));
+
+        Region right = weekLoader.load();
+
+        WeeklyReportController weeklyReportController = weekLoader.getController();
+
+        Pane centre = new Pane();
 
         int width = (int) frame.getPrefWidth();
         int height = (int) frame.getPrefHeight();
@@ -47,6 +55,8 @@ public class WeatherApp extends Application {
 
         controller.setSwipeContainer(container);
         controller.init();
+
+        weeklyReportController.init();
 
         primaryStage.setScene(scene);
 
