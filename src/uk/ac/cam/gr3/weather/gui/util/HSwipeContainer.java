@@ -65,9 +65,9 @@ public class HSwipeContainer extends Region {
         transition = new TranslateTransition(Duration.millis(Math.abs(translateBy) / 2), content);
 
         transition.setByX(translateBy);
-        transition.play();
-
         transition.setOnFinished(event -> transition = null);
+
+        transition.play();
     }
 
     @Override
