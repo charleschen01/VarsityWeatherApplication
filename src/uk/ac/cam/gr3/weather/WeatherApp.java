@@ -10,6 +10,7 @@ import uk.ac.cam.gr3.weather.gui.FrameController;
 import uk.ac.cam.gr3.weather.gui.WeeklyReportController;
 import uk.ac.cam.gr3.weather.gui.panes.SnowPane;
 import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
+import uk.ac.cam.gr3.weather.gui.views.HomeScreenView;
 
 public class WeatherApp extends Application {
 
@@ -33,9 +34,11 @@ public class WeatherApp extends Application {
         SnowPane snowReport = new SnowPane();
 
         // ---- Load Home Screen ----
-        FXMLLoader homeScreenLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/HomeScreen.fxml"));
+        //FXMLLoader homeScreenLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/HomeScreen.fxml"));
 
-        Region homeScreen = homeScreenLoader.load();
+        //Region homeScreen = homeScreenLoader.load();
+
+        HomeScreenView homeScreen = new HomeScreenView();
 
         // ---- Load Weekly Report ----
         FXMLLoader weekLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/weekly.fxml"));
