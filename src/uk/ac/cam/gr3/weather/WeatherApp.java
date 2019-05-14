@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import uk.ac.cam.gr3.weather.gui.FrameController;
 import uk.ac.cam.gr3.weather.gui.WeeklyReportController;
 import uk.ac.cam.gr3.weather.gui.panes.SnowPane;
-import uk.ac.cam.gr3.weather.gui.util.HSwipeContainer;
+import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
 
 public class WeatherApp extends Application {
 
@@ -28,30 +28,30 @@ public class WeatherApp extends Application {
 
         Scene scene = new Scene(frame);
 
-        SnowPane left = new SnowPane();
+        SnowPane snowReport = new SnowPane();
 
         FXMLLoader weekLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/weekly.fxml"));
 
-        Region right = weekLoader.load();
+        Region weeklyReport = weekLoader.load();
 
         WeeklyReportController weeklyReportController = weekLoader.getController();
 
-        Pane centre = new Pane();
+        Pane homeScreen = new Pane();
 
         int width = (int) frame.getPrefWidth();
         int height = (int) frame.getPrefHeight();
 
-        left.setStyle("-fx-background-color: #3F3F3F");
-        left.setPrefWidth(width);
-        left.setPrefHeight(height);
-        centre.setStyle("-fx-background-color: #6F6F6F");
-        centre.setPrefWidth(width);
-        centre.setPrefHeight(height);
-        right.setStyle("-fx-background-color: #9F9F9F");
-        right.setPrefWidth(width);
-        right.setPrefHeight(height);
+        snowReport.setStyle("-fx-background-color: #3F3F3F");
+        snowReport.setPrefWidth(width);
+        snowReport.setPrefHeight(height);
+        homeScreen.setStyle("-fx-background-color: #6F6F6F");
+        homeScreen.setPrefWidth(width);
+        homeScreen.setPrefHeight(height);
+        weeklyReport.setStyle("-fx-background-color: #9F9F9F");
+        weeklyReport.setPrefWidth(width);
+        weeklyReport.setPrefHeight(height);
 
-        HSwipeContainer container = new HSwipeContainer(left, centre, right, width);
+        SwipeContainer container = new SwipeContainer(snowReport, homeScreen, weeklyReport, width);
 
         controller.setSwipeContainer(container);
         controller.init();

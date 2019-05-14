@@ -11,7 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
-import uk.ac.cam.gr3.weather.gui.util.HSwipeContainer;
+import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
 
 public class FrameController {
 
@@ -28,7 +28,7 @@ public class FrameController {
     private Button snow, home, weekly;
     // TODO bottom navigation bar
 
-    private HSwipeContainer container;
+    private SwipeContainer container;
 
     private DoubleProperty menuBarTranslateY = new SimpleDoubleProperty(0);
     private DoubleProperty menuBarRotate = new SimpleDoubleProperty(0);
@@ -39,7 +39,7 @@ public class FrameController {
 
     // TODO clean up initialisation
 
-    public void setSwipeContainer(HSwipeContainer container) {
+    public void setSwipeContainer(SwipeContainer container) {
 
         this.container = container;
         swipeAnchor.getChildren().setAll(this.container);
@@ -91,19 +91,19 @@ public class FrameController {
     @FXML
     private void showSnowReport() {
 
-        container.setDisplaying(HSwipeContainer.SNOW_REPORT);
+        container.setDisplaying(SwipeContainer.SNOW_REPORT);
     }
 
     @FXML
     private void showHomeScreen() {
 
-        container.setDisplaying(HSwipeContainer.HOME_SCREEN);
+        container.setDisplaying(SwipeContainer.HOME_SCREEN);
     }
 
     @FXML
     private void showWeeklyReport() {
 
-        container.setDisplaying(HSwipeContainer.WEEKLY_REPORT);
+        container.setDisplaying(SwipeContainer.WEEKLY_REPORT);
     }
 
     @FXML
