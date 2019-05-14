@@ -21,10 +21,8 @@ public class SnowPane extends GridPane {
         setBackground(new Background(new BackgroundImage(new Image("file:resources/background.jpg"), null, null, null, null)));
 
         ColumnConstraints column1 = new ColumnConstraints();
-        column1.setPercentWidth(50);
-        ColumnConstraints column2 = new ColumnConstraints();
-        column2.setPercentWidth(50);
-        this.getColumnConstraints().addAll(column1, column2);
+        column1.setMinWidth(40);
+        this.getColumnConstraints().addAll(column1);
 
         snowConditions = new AlignedTextBox("--", 40, Pos.CENTER);
         lastSnowed = new AlignedTextBox("--", 30);
@@ -43,11 +41,11 @@ public class SnowPane extends GridPane {
         add(new AlignedTextBox("Snow Conditions:", 20), 0 , 1, 2, 1);
         add(snowConditions,0 ,2, 2, 1);
         add(new AlignedTextBox("Last Snowed:", 20), 0, 3, 2, 1);
-        add(lastSnowed, 0 ,  4);
+        add(lastSnowed, 1 ,  4);
 
         HBox runsOpenBox = new HBox();
         runsOpenBox.getChildren().addAll(runPercentage, new AlignedTextBox("% of the\nruns open", 20, Pos.CENTER));
-        add(runsOpenBox, 0 ,5);
+        add(runsOpenBox, 0 ,5, 2, 1);
 
         HBox topBox = new HBox();
         topBox.getChildren().addAll(topSnow, new AlignedTextBox("cm of snow", 15, Pos.BOTTOM_CENTER));
