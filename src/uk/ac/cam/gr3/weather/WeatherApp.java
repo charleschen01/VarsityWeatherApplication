@@ -46,6 +46,7 @@ public class WeatherApp extends Application {
         HSwipeContainer container = new HSwipeContainer(left, centre, right, width);
 
         controller.setSwipeContainer(container);
+        controller.init();
 
         primaryStage.setScene(scene);
 
