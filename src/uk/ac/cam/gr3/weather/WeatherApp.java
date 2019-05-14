@@ -45,7 +45,7 @@ public class WeatherApp extends Application {
         int width = (int) frame.getPrefWidth();
         int height = (int) frame.getPrefHeight();
 
-        snowReport.setStyle("-fx-background-color: #3F3F3F");
+        //snowReport.setStyle("-fx-background-color: #3F3F3F");
         snowReport.setPrefWidth(width);
         snowReport.setPrefHeight(height);
         homeScreen.setStyle("-fx-background-color: #6F6F6F");
