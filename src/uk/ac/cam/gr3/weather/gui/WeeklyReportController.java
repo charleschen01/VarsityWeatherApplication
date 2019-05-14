@@ -36,10 +36,12 @@ public class WeeklyReportController {
             //<Label prefHeight="18.0" prefWidth="43.0" text="5 °C">
             tempMax.setPrefHeight(18.0);
             tempMax.setPrefWidth(43.0);
+            tempMax.setTextFill(javafx.scene.paint.Color.web("#ff0000", 1.0));
         javafx.scene.control.Label tempMin = new javafx.scene.control.Label("3 °C");
             //<Label prefHeight="18.0" prefWidth="43.0" text="5 °C">
             tempMin.setPrefHeight(18.0);
             tempMin.setPrefWidth(43.0);
+            tempMin.setTextFill(javafx.scene.paint.Color.web("#0000ff", 1.0));
         wednesday.getChildren().add(mood);
         wednesday.getChildren().add(day);
         wednesday.getChildren().add(tempMax);
