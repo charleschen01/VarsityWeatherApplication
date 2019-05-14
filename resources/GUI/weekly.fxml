@@ -44,10 +44,10 @@
    <children>
       <VBox fx:id="WeekVBox" layoutX="113.0" layoutY="155.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="360.0">
+            <!--<HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="360.0">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label prefHeight="18.0" prefWidth="149.0" text="Tuesday" />
+                  <Label prefHeight="18.0" prefWidth="149.0" text="Dummy" />
                   <Label prefHeight="18.0" prefWidth="43.0" text="5 °C">
                      <HBox.margin>
                         <Insets />
@@ -55,8 +55,7 @@
                   </Label>
                   <Label text="2 °C" />
                </children>
-            </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
+            </HBox> -->
          </children>
       </VBox>
    </children>
