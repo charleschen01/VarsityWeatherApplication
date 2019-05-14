@@ -33,7 +33,9 @@ public class WeatherApp extends Application {
         SnowPane snowReport = new SnowPane();
 
         // ---- Load Home Screen ----
-        Pane homeScreen = new Pane();
+        FXMLLoader homeScreenLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/HomeScreen.fxml"));
+
+        Region homeScreen = homeScreenLoader.load();
 
         // ---- Load Weekly Report ----
         FXMLLoader weekLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/weekly.fxml"));
@@ -50,7 +52,7 @@ public class WeatherApp extends Application {
         snowReport.setPrefHeight(height);
         homeScreen.setStyle("-fx-background-color: #6F6F6F");
         homeScreen.setPrefWidth(width);
-        homeScreen.setPrefHeight(height);
+        //homeScreen.setPrefHeight(height);
         weeklyReport.setStyle("-fx-background-color: #9F9F9F");
         weeklyReport.setPrefWidth(width);
         weeklyReport.setPrefHeight(height);
