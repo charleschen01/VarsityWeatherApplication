@@ -20,23 +20,27 @@ public class WeatherApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource("GUI/frame.fxml"));
+        // ---- Load Frame ----
+        FXMLLoader frameLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/frame.fxml"));
 
-        Region frame = loader.load();
+        Region frame = frameLoader.load();
 
-        FrameController controller = loader.getController();
+        FrameController frameController = frameLoader.getController();
 
         Scene scene = new Scene(frame);
 
+        // ---- Load Snow Report ----
         SnowPane snowReport = new SnowPane();
 
+        // ---- Load Home Screen ----
+        Pane homeScreen = new Pane();
+
+        // ---- Load Weekly Report ----
         FXMLLoader weekLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/weekly.fxml"));
 
         Region weeklyReport = weekLoader.load();
 
         WeeklyReportController weeklyReportController = weekLoader.getController();
-
-        Pane homeScreen = new Pane();
 
         int width = (int) frame.getPrefWidth();
         int height = (int) frame.getPrefHeight();
@@ -51,13 +55,15 @@ public class WeatherApp extends Application {
         weeklyReport.setPrefWidth(width);
         weeklyReport.setPrefHeight(height);
 
-        SwipeContainer container = new SwipeContainer(snowReport, homeScreen, weeklyReport, width);
+        SwipeContainer swipeContainer = new SwipeContainer(snowReport, homeScreen, weeklyReport, width);
 
-        controller.setSwipeContainer(container);
-        controller.init();
+        // ---- Initialise controllers ----
+        frameController.setSwipeContainer(swipeContainer);
+        frameController.init();
 
         weeklyReportController.init();
 
+        // ---- Setup Stage ----
         primaryStage.setScene(scene);
 
         primaryStage.setResizable(false);
