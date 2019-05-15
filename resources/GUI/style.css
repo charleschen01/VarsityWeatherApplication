@@ -17,12 +17,12 @@
     -fx-scale-y: 1.16;
 }
 
-.hamburger-button:armed {
-    -fx-color: -fx-pressed-base;
-}
-
 .hamburger-button-bar {
 
     -fx-background-color: -fx-text-base-color;
     -fx-background-radius: 2px;
+}
+
+.bottom-navigation {
+    -fx-background-color: linear-gradient(to top left, #82BADD, #B6DCED);
 }
