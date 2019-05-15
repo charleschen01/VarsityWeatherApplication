@@ -34,11 +34,11 @@ public class WeatherApp extends Application {
         SnowPane snowReport = new SnowPane();
 
         // ---- Load Home Screen ----
-        //FXMLLoader homeScreenLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/HomeScreen.fxml"));
+        FXMLLoader homeScreenLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/HomeScreen.fxml"));
 
-        //Region homeScreen = homeScreenLoader.load();
+        Region homeScreen = homeScreenLoader.load();
 
-        HomeScreenView homeScreen = new HomeScreenView();
+        //HomeScreenView homeScreen = new HomeScreenView();
 
         HomeScreenController homeScreenController = homeScreenLoader.getController();
 
