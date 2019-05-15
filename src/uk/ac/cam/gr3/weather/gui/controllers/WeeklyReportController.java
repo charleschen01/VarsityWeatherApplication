@@ -1,4 +1,4 @@
-package uk.ac.cam.gr3.weather.gui;
+package uk.ac.cam.gr3.weather.gui.controllers;
 
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
