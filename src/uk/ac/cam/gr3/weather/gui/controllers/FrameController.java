@@ -1,4 +1,4 @@
-package uk.ac.cam.gr3.weather.gui;
+package uk.ac.cam.gr3.weather.gui.controllers;
 
 import javafx.animation.SequentialTransition;
 import javafx.animation.Transition;

@@ -9,5 +9,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="javafx-sdk-11.0" level="application" />
+    <orderEntry type="library" name="javax.json-api-1" level="project" />
+    <orderEntry type="library" name="org.json:json:20180813" level="project" />
   </component>
 </module>

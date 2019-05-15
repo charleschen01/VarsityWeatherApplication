@@ -3,11 +3,11 @@ package uk.ac.cam.gr3.weather;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
-import uk.ac.cam.gr3.weather.gui.FrameController;
-import uk.ac.cam.gr3.weather.gui.WeeklyReportController;
+import uk.ac.cam.gr3.weather.gui.controllers.FrameController;
+import uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController;
+import uk.ac.cam.gr3.weather.gui.controllers.WeeklyReportController;
 import uk.ac.cam.gr3.weather.gui.panes.SnowPane;
 import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
 import uk.ac.cam.gr3.weather.gui.views.HomeScreenView;
@@ -40,6 +40,8 @@ public class WeatherApp extends Application {
 
         HomeScreenView homeScreen = new HomeScreenView();
 
+        HomeScreenController homeScreenController = homeScreenLoader.getController();
+
         // ---- Load Weekly Report ----
         FXMLLoader weekLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/weekly.fxml"));
 
@@ -50,13 +52,10 @@ public class WeatherApp extends Application {
         int width = (int) frame.getPrefWidth();
         int height = (int) frame.getPrefHeight();
 
-        //snowReport.setStyle("-fx-background-color: #3F3F3F");
         snowReport.setPrefWidth(width);
         snowReport.setPrefHeight(height);
-        homeScreen.setStyle("-fx-background-color: #6F6F6F");
         homeScreen.setPrefWidth(width);
         //homeScreen.setPrefHeight(height);
-        weeklyReport.setStyle("-fx-background-color: #9F9F9F");
         weeklyReport.setPrefWidth(width);
         weeklyReport.setPrefHeight(height);
 
@@ -65,6 +64,8 @@ public class WeatherApp extends Application {
         // ---- Initialise controllers ----
         frameController.setSwipeContainer(swipeContainer);
         frameController.init();
+
+        homeScreenController.init();
 
         weeklyReportController.init();
 

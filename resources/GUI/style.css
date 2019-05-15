@@ -1,3 +1,10 @@
+.os-bar {
+
+    -fx-background-color: #BDE1EF;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #D9DCD6;
+}
+
 .hamburger-button {
 
     -fx-background-color: transparent;
@@ -10,12 +17,30 @@
     -fx-scale-y: 1.16;
 }
 
-.hamburger-button:armed {
-    -fx-color: -fx-pressed-base;
-}
-
 .hamburger-button-bar {
 
     -fx-background-color: -fx-text-base-color;
     -fx-background-radius: 2px;
+}
+
+.bottom-navigation {
+    -fx-background-color: linear-gradient(to top left, #82BADD, #B6DCED);
+}
+
+.altitude-button {
+    -fx-base: #B6DCED/*#BDE1EF*/;
+}
+
+.altitude-button.left {
+    -fx-background-radius: 5px 0 0 5px;
+}
+
+.altitude-button.right {
+    -fx-background-radius: 0 5px 5px 0;
+}
+
+.label.outline .text {
+    -fx-fill: transparent;
+    -fx-stroke: -fx-text-base-color;
+    -fx-stroke-width: 3px;
 }

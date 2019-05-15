@@ -1,17 +1,31 @@
 package uk.ac.cam.gr3.weather.data.util;
 
+import org.json.JSONObject;
 import java.net.*;
 import java.io.*;
 
+//Gets a JASON object from the url given
 public class URLConnectionReader {
-    public static void main(String[] args) throws Exception {
-        URL snowReport = new URL("https://api.weatherunlocked.com/api/snowreport/333020?app_id=5d6c6b76&app_key=5a54d2f573d149bb65b2a2b7fd05cfc3");
-        URLConnection yc = snowReport.openConnection();
-        BufferedReader in = new BufferedReader(new InputStreamReader(
-                yc.getInputStream()));
+    public static JSONObject getJSON(String urlStr) throws IOException {
+        URL url = new URL(urlStr);
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("GET");
+        con.setRequestProperty("Content-Type", "application/json");
+        String contentType = con.getHeaderField("i");
+
+        int status = con.getResponseCode();
+
+        BufferedReader in = new BufferedReader(
+                new InputStreamReader(con.getInputStream()));
         String inputLine;
-        while ((inputLine = in.readLine()) != null)
-            System.out.println(inputLine);
+
+        StringBuffer content = new StringBuffer();
+        while ((inputLine = in.readLine()) != null) {
+            content.append(inputLine);
+        }
         in.close();
+        con.disconnect();
+
+        return new JSONObject(content.toString());
     }
 }
