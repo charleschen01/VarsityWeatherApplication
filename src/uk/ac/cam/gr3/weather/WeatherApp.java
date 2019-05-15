@@ -10,7 +10,8 @@ import uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController;
 import uk.ac.cam.gr3.weather.gui.controllers.WeeklyReportController;
 import uk.ac.cam.gr3.weather.gui.panes.SnowPane;
 import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
-import uk.ac.cam.gr3.weather.gui.views.HomeScreenView;
+
+import java.io.IOException;
 
 public class WeatherApp extends Application {
 
@@ -19,7 +20,7 @@ public class WeatherApp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
 
         // ---- Load Frame ----
         FXMLLoader frameLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/frame.fxml"));
@@ -37,8 +38,6 @@ public class WeatherApp extends Application {
         FXMLLoader homeScreenLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/HomeScreen.fxml"));
 
         Region homeScreen = homeScreenLoader.load();
-
-        //HomeScreenView homeScreen = new HomeScreenView();
 
         HomeScreenController homeScreenController = homeScreenLoader.getController();
 
