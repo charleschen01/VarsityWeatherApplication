@@ -11,6 +11,8 @@ import uk.ac.cam.gr3.weather.gui.controllers.WeeklyReportController;
 import uk.ac.cam.gr3.weather.gui.panes.SnowPane;
 import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
 
+import java.io.IOException;
+
 public class WeatherApp extends Application {
 
     public static void main(String[] args) {
@@ -18,7 +20,7 @@ public class WeatherApp extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage primaryStage) throws IOException {
 
         // ---- Load Frame ----
         FXMLLoader frameLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/frame.fxml"));

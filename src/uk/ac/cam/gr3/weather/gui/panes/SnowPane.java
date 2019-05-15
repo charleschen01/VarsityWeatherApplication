@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import uk.ac.cam.gr3.weather.data.util.SnowData;
 import uk.ac.cam.gr3.weather.gui.util.AlignedTextBox;
 
 public class SnowPane extends GridPane {
@@ -12,6 +13,8 @@ public class SnowPane extends GridPane {
     private AlignedTextBox runPercentage;
     private AlignedTextBox topSnow;
     private AlignedTextBox bottomSnow;
+
+    private SnowData snowData;
 
 
     public SnowPane() {
@@ -31,6 +34,7 @@ public class SnowPane extends GridPane {
         bottomSnow = new AlignedTextBox("--", 30);
 
         // Add weather symbol to display
+        // TODO: get this to dynamically update
         ImageView weatherSymbol = new ImageView(new Image("file:resources/WeatherIcons/HeavySnow.gif", 300, 0, true, true));
         HBox symbolBox = new HBox();
         symbolBox.setAlignment(Pos.CENTER);
@@ -55,34 +59,19 @@ public class SnowPane extends GridPane {
         bottomBox.getChildren().addAll(bottomSnow, new AlignedTextBox("cm of snow", 15, Pos.BOTTOM_CENTER));
         add(bottomBox, 0 ,7, 2, 1);
 
-        // Demo code
-        setSnowConditions("Icy");
-        setDateLastSnowed("01/01/1970");
-        setOpenRunPercentage(45);
-        setTopSnowDepth(20);
-        setBottomSnowDepth(10);
+        snowData = new SnowData();
+
+        // Initial Settings
+        refreshData();
     }
 
-    public void setSnowConditions(String conditions) {
-        // Could be using an enum to set possible valid conditions
-        // Probably needs to update the picture as well
-        snowConditions.setText(conditions);
+    private void refreshData() {
+        // TODO: needs to update picture as well
+        snowConditions.setText(snowData.getSnowConditions());
+        lastSnowed.setText(snowData.getLastSnowed());
+        runPercentage.setText(Integer.toString(snowData.getPercentageOpenRuns()));
+        topSnow.setText(String.format("Top: %.1f", snowData.getSnowFallTop()));
+        bottomSnow.setText(String.format("Bottom: %.1f", snowData.getSnowFallBottom()));
     }
-    public void setDateLastSnowed(String snowed) {
-        lastSnowed.setText(snowed);
-    }
-
-    public void setOpenRunPercentage(int percentage) {
-        runPercentage.setText(Integer.toString(percentage));
-    }
-
-    public void setTopSnowDepth(int depth) {
-        topSnow.setText("Top: " + depth);
-    }
-
-    public void setBottomSnowDepth(int depth) {
-        bottomSnow.setText("Bottom: " + depth);
-    }
-
 
 }
