@@ -1,3 +1,10 @@
+.os-bar {
+
+    -fx-background-color: #BDE1EF;
+    -fx-border-width: 0 0 1px 0;
+    -fx-border-color: #D9DCD6;
+}
+
 .hamburger-button {
 
     -fx-background-color: transparent;
