@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import uk.ac.cam.gr3.weather.data.util.DataImplementation;
 import uk.ac.cam.gr3.weather.gui.controllers.FrameController;
 import uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController;
 import uk.ac.cam.gr3.weather.gui.controllers.WeeklyReportController;
@@ -23,6 +24,7 @@ public class WeatherApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
+        DataImplementation service = new DataImplementation();
 
         // ---- Load Frame ----
         FXMLLoader frameLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/frame.fxml"));
@@ -34,7 +36,7 @@ public class WeatherApp extends Application {
         Scene scene = new Scene(frame);
 
         // ---- Load Snow Report ----
-        SnowPane snowReport = new SnowPane();
+        SnowPane snowReport = new SnowPane(service);
 
         // ---- Load Home Screen ----
         FXMLLoader homeScreenLoader = new FXMLLoader(ClassLoader.getSystemResource("GUI/HomeScreen.fxml"));
@@ -77,7 +79,7 @@ public class WeatherApp extends Application {
         homeScreenController.setHSwipePane(pane);
         homeScreenController.init();
 
-        weeklyReportController.init();
+        weeklyReportController.init(service);
 
         // ---- Setup Stage ----
         primaryStage.setScene(scene);

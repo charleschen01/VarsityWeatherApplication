@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Font;
 import uk.ac.cam.gr3.weather.data.util.SnowData;
+import uk.ac.cam.gr3.weather.data.WeatherService;
 
 public class SnowPane extends GridPane {
     private Label snowConditions;
@@ -18,7 +19,7 @@ public class SnowPane extends GridPane {
     private SnowData snowData;
 
 
-    public SnowPane() {
+    public SnowPane(WeatherService service) {
         setHgap(10);
         setVgap(10);
 
@@ -67,7 +68,7 @@ public class SnowPane extends GridPane {
         bottomBox.setAlignment(Pos.BASELINE_LEFT);
         add(bottomBox, 0 ,7, 2, 1);
 
-        snowData = new SnowData();
+        snowData = service.getSnowData();
 
         // Initial Settings
         refreshData();
