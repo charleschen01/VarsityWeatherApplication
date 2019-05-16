@@ -1,6 +1,7 @@
 package uk.ac.cam.gr3.weather.gui.util;
 
 import javafx.animation.TranslateTransition;
+import javafx.beans.binding.DoubleBinding;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -12,8 +13,13 @@ public class SwipeContainer extends Region {
     public static final int SNOW_REPORT = 0, HOME_SCREEN = 1, WEEKLY_REPORT = 2;
 
     private final HBox content;
-
     private final int screenWidth;
+
+    private final DoubleBinding displayingNormalised;
+
+    public DoubleBinding displayingNormalisedProperty() {
+        return displayingNormalised;
+    }
 
     private TranslateTransition transition;
 
@@ -28,6 +34,8 @@ public class SwipeContainer extends Region {
         this.screenWidth = screenWidth;
 
         content = new HBox(snowReport, homeScreen, weeklyReport);
+
+        displayingNormalised = content.translateXProperty().divide(-screenWidth);
 
         setDisplaying(HOME_SCREEN);
 
@@ -92,8 +100,8 @@ public class SwipeContainer extends Region {
         return (Region) content.getChildren().get(displayingRounded);
     }
 
-    public int getDisplayingRounded() {
-        return (int) Math.round(-content.getTranslateX() / screenWidth);
+    private int getDisplayingRounded() {
+        return (int) Math.round(displayingNormalised.get());
     }
 
     public void setDisplaying(int displaying) {
@@ -117,10 +125,5 @@ public class SwipeContainer extends Region {
         });
 
         transition.play();
-    }
-
-    @Override
-    protected double computePrefWidth(double height) {
-        return screenWidth;
     }
 }
