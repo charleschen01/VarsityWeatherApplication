@@ -8,38 +8,19 @@ import java.io.IOException;
 public class SnowData {
     //Use the getter methods below to access the data
     private String snowConditions;
-    private String weatherIcon;
     private String lastSnowed;
     private int percentageOpenRuns;
     private double snowFallTop;
     private double snowFallBottom;
 
 
-    public SnowData () {
-        refresh();
-    }
-
-    //refresh snow data
-    public void refresh() {
-        //gets the Json object from the URL
-        JSONObject data = new JSONObject();
-        JSONObject iconData = new JSONObject();
-
-        try {
-            data = URLConnectionReader.getJSON("https://api.weatherunlocked.com/api/snowreport/333020?app_id=5d6c6b76&app_key=5a54d2f573d149bb65b2a2b7fd05cfc3");
-            iconData = URLConnectionReader.getJSON("https://api.weatherunlocked.com/api/resortforecast/333020?app_id=5d6c6b76&app_key=5a54d2f573d149bb65b2a2b7fd05cfc3");
-        } catch (IOException  e) {
-            e.printStackTrace();
-        }
-        JSONObject midIconData =  iconData.getJSONArray("forecast").getJSONObject(0).getJSONObject("mid");
-
+    public SnowData (JSONObject snowData) {
         //updates the attributes
-        weatherIcon = "WeatherIcons/" + midIconData.getString("wx_icon");
-        snowConditions = data.getString("conditions");
-        lastSnowed = data.getString("lastsnow");
-        percentageOpenRuns = data.getInt("pctopen");
-        snowFallTop = data.getDouble("lowersnow_cm");
-        snowFallBottom = data.getDouble("lowersnow_cm");
+        snowConditions = snowData.getString("conditions");
+        lastSnowed = snowData.getString("lastsnow");
+        percentageOpenRuns = snowData.getInt("pctopen");
+        snowFallTop = snowData.getDouble("lowersnow_cm");
+        snowFallBottom = snowData.getDouble("lowersnow_cm");
     }
 
     //getters
@@ -63,13 +44,5 @@ public class SnowData {
         return snowFallBottom;
     }
 
-    public String getWeatherIcon() {
-        return weatherIcon;
-    }
-
-    public static void main(String[] args) {
-        SnowData test = new SnowData();
-        System.out.println(test.getWeatherIcon());
-    }
 }
 
