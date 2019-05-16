@@ -69,57 +69,65 @@
                         <Insets left="10.0" top="5.0" />
                      </padding>
                   </HBox>
-                  <HBox alignment="CENTER" maxHeight="-Infinity" pickOnBounds="false" prefHeight="45.0" spacing="30.0" styleClass="bottom-navigation" StackPane.alignment="BOTTOM_CENTER">
+                  <StackPane alignment="BOTTOM_CENTER" maxHeight="-Infinity" styleClass="bottom-navigation" StackPane.alignment="BOTTOM_CENTER">
                      <children>
-                        <Button fx:id="snow" focusTraversable="false" mnemonicParsing="false" onAction="#showSnowReport" prefHeight="40.0" prefWidth="40.0">
-                           <graphic>
-                              <StackPane>
-                                 <children>
-                                    <SVGPath content="M8,8 v5 l2,2 m-4,0 l2,-2 M8,8 v-5 l2,-2 m-4,0 l2,2" fill="TRANSPARENT" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" translateX="-0.5" translateY="-0.5" />
-                                    <SVGPath content="M8,8 v5 l2,2 m-4,0 l2,-2 M8,8 v-5 l2,-2 m-4,0 l2,2" fill="TRANSPARENT" rotate="60.0" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" translateX="-0.5" translateY="-0.5" />
-                                    <SVGPath content="M8,8 v5 l2,2 m-4,0 l2,-2 M8,8 v-5 l2,-2 m-4,0 l2,2" fill="TRANSPARENT" rotate="120.0" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" translateX="-0.5" translateY="-0.5" />
-                                 </children>
-                              </StackPane>
-                           </graphic>
-                           <padding>
-                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                           </padding></Button>
-                        <Button fx:id="home" focusTraversable="false" mnemonicParsing="false" onAction="#showHomeScreen" prefHeight="40.0" prefWidth="40.0">
-                           <padding>
-                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                           </padding>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                           <graphic>
-                              <StackPane>
-                                 <children>
-                                    <SVGPath content="M8,0 l8,8 l-2,0 l0,8 l-12,0 l0,-8 l-2,0 z" fill="TRANSPARENT" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" translateX="-0.5" translateY="-0.5" />
-                                 </children>
-                              </StackPane>
-                           </graphic></Button>
-                        <Button fx:id="weekly" focusTraversable="false" mnemonicParsing="false" onAction="#showWeeklyReport" prefHeight="40.0" prefWidth="40.0">
-                           <graphic>
-                              <StackPane alignment="TOP_CENTER">
-                                 <children>
-                                    <SVGPath content="M0,0 l13,0 l0,4 l-13,0 l0,-4" fill="#4fd6f7" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" translateY="0.5" />
-                                    <SVGPath content="M0,0 l0,9 l13,0 l0,-9" fill="TRANSPARENT" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" translateY="13.0" />
-                                    <Text fontSmoothingType="LCD" scaleX="1.75" scaleY="1.75" strokeType="OUTSIDE" strokeWidth="0.0" text="7" textAlignment="CENTER" translateX="0.5" translateY="3.0" StackPane.alignment="CENTER">
-                                       <font>
-                                          <Font name="System Bold" size="10.0" />
-                                       </font>
-                                    </Text>
-                                 </children>
+                        <Pane fx:id="bottomNavigationSelection" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="50.0" styleClass="bottom-navigation-selection" StackPane.alignment="CENTER" />
+                        <HBox alignment="CENTER" maxHeight="-Infinity" pickOnBounds="false" prefHeight="45.0" spacing="30.0">
+                           <children>
+                              <Button fx:id="snow" focusTraversable="false" mnemonicParsing="false" onAction="#showSnowReport" prefHeight="40.0" prefWidth="40.0">
+                                 <graphic>
+                                    <StackPane>
+                                       <children>
+                                          <SVGPath content="M8,8 v5 l2,2 m-4,0 l2,-2 M8,8 v-5 l2,-2 m-4,0 l2,2" fill="TRANSPARENT" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" styleClass="icon-svg" translateX="-0.5" translateY="-0.5" />
+                                          <SVGPath content="M8,8 v5 l2,2 m-4,0 l2,-2 M8,8 v-5 l2,-2 m-4,0 l2,2" fill="TRANSPARENT" rotate="60.0" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" styleClass="icon-svg" translateX="-0.5" translateY="-0.5" />
+                                          <SVGPath content="M8,8 v5 l2,2 m-4,0 l2,-2 M8,8 v-5 l2,-2 m-4,0 l2,2" fill="TRANSPARENT" rotate="120.0" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" styleClass="icon-svg" translateX="-0.5" translateY="-0.5" />
+                                       </children>
+                                    </StackPane>
+                                 </graphic>
                                  <padding>
-                                    <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                    <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                                  </padding>
-                              </StackPane>
-                           </graphic>
-                           <padding>
-                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                           </padding></Button>
+                              </Button>
+                              <Button fx:id="home" focusTraversable="false" mnemonicParsing="false" onAction="#showHomeScreen" prefHeight="40.0" prefWidth="40.0">
+                                 <padding>
+                                    <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                 </padding>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <graphic>
+                                    <StackPane>
+                                       <children>
+                                          <SVGPath content="M8,0 l8,8 l-2,0 l0,8 l-12,0 l0,-8 l-2,0 z" fill="TRANSPARENT" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" styleClass="icon-svg" translateX="-0.5" translateY="-0.5" />
+                                       </children>
+                                    </StackPane>
+                                 </graphic>
+                              </Button>
+                              <Button fx:id="weekly" focusTraversable="false" mnemonicParsing="false" onAction="#showWeeklyReport" prefHeight="40.0" prefWidth="40.0">
+                                 <graphic>
+                                    <StackPane alignment="TOP_CENTER">
+                                       <children>
+                                          <SVGPath content="M0,0 l13,0 l0,4 l-13,0 l0,-4" fill="#4fd6f7" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" styleClass="icon-svg" translateY="0.5" />
+                                          <SVGPath content="M0,0 l0,9 l13,0 l0,-9" fill="TRANSPARENT" scaleX="2.0" scaleY="2.0" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="2.0" styleClass="icon-svg" translateY="13.0" />
+                                          <Text fontSmoothingType="LCD" scaleX="1.75" scaleY="1.75" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="icon-text" text="7" textAlignment="CENTER" translateX="0.5" translateY="3.0" StackPane.alignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold" size="10.0" />
+                                             </font>
+                                          </Text>
+                                       </children>
+                                       <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                       </padding>
+                                    </StackPane>
+                                 </graphic>
+                                 <padding>
+                                    <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
+                                 </padding>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </StackPane>
                </children>
             </StackPane>
          </center>

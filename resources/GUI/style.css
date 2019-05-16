@@ -27,6 +27,22 @@
     -fx-background-color: linear-gradient(to top left, #82BADD, #B6DCED);
 }
 
+.bottom-navigation-selection {
+    -fx-background-color: #B6DCED;
+}
+
+.bottom-navigation .button {
+    -fx-background-color: transparent;
+}
+
+.bottom-navigation .button:hover .icon-svg {
+    -fx-stroke: #606060;
+}
+
+.bottom-navigation .button:hover .icon-text {
+    -fx-fill: #606060;
+}
+
 .altitude-button {
     -fx-base: #B6DCED/*#BDE1EF*/;
 }

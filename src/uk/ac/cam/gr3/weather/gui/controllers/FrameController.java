@@ -27,7 +27,9 @@ public class FrameController {
 
     @FXML
     private Button snow, home, weekly;
-    // TODO bottom navigation bar
+
+    @FXML
+    private Pane bottomNavigationSelection;
 
     private SwipeContainer container;
 
@@ -84,6 +86,8 @@ public class FrameController {
 
         // TODO wrap with a parallel transition to pull the menu in / out of the screen
         menuToggleTransition = new SequentialTransition(translate, rotate);
+
+        bottomNavigationSelection.translateXProperty().bind(container.displayingNormalisedProperty().subtract(1).multiply(70));
     }
 
     @FXML
