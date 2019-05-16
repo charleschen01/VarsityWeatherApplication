@@ -11,13 +11,13 @@ public class SnowData {
     private double snowFallBottom;
 
 
-    public SnowData (JSONObject snowData) {
-        //updates the attributes
-        snowConditions = snowData.getString("conditions");
-        lastSnowed = snowData.getString("lastsnow");
-        percentageOpenRuns = snowData.getInt("pctopen");
-        snowFallTop = snowData.getDouble("lowersnow_cm");
-        snowFallBottom = snowData.getDouble("lowersnow_cm");
+    public SnowData (JSONObject data) {
+        //updates the attributes with the data from the Snow report
+        snowConditions = data.getString("conditions");
+        lastSnowed = data.getString("lastsnow");
+        percentageOpenRuns = data.getInt("pctopen");
+        snowFallTop = data.getDouble("uppersnow_cm");
+        snowFallBottom = data.getDouble("lowersnow_cm");
     }
 
     //getters
@@ -41,5 +41,25 @@ public class SnowData {
         return snowFallBottom;
     }
 
+    //setters
+    protected void setSnowConditions(String snowConditions) {
+        this.snowConditions = snowConditions;
+    }
+
+    protected void setLastSnowed(String lastSnowed) {
+        this.lastSnowed = lastSnowed;
+    }
+
+    protected void setPercentageOpenRuns(int percentageOpenRuns) {
+        this.percentageOpenRuns = percentageOpenRuns;
+    }
+
+    protected void setSnowFallTop(double snowFallTop) {
+        this.snowFallTop = snowFallTop;
+    }
+
+    protected void setSnowFallBottom(double snowFallBottom) {
+        this.snowFallBottom = snowFallBottom;
+    }
 }
 
