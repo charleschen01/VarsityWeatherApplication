@@ -8,6 +8,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import uk.ac.cam.gr3.weather.data.util.Day;
+import uk.ac.cam.gr3.weather.data.util.WeatherService;
 
 public class WeeklyReportController {
 
@@ -50,8 +52,9 @@ public class WeeklyReportController {
         return wednesday;
     }
 
-    public void init() {
-        WeekVBox.getChildren().add(dayBand("Wednesday","WeatherIcons/PartCloudSleetSnowThunderNight.gif","5 °C","2 °C"));
-        WeekVBox.getChildren().add(dayBand("Thursday","WeatherIcons/PartlyCloudyDay.gif","50 °C","-20 °C"));
+    public void init(WeatherService ws) {
+        for(Day d: ws.getWeeklyData().getWeek())WeekVBox.getChildren().add(dayBand(d.getNameOfDay(),d.getWeatherIcon(),d.getHighestTempersture()+" °C",d.getLowestTempersture()+" °C"));
+        //WeekVBox.getChildren().add(dayBand("Wednesday","WeatherIcons/PartCloudSleetSnowThunderNight.gif","5 °C","2 °C"));
+        //WeekVBox.getChildren().add(dayBand("Thursday","WeatherIcons/PartlyCloudyDay.gif","50 °C","-20 °C"));
     }
 }
