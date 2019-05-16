@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
+import uk.ac.cam.gr3.weather.Util;
 import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
 
 public class FrameController {
@@ -44,10 +45,7 @@ public class FrameController {
         this.container = container;
         swipeAnchor.getChildren().setAll(this.container);
 
-        AnchorPane.setTopAnchor(container, 0d);
-        AnchorPane.setRightAnchor(container, 0d);
-        AnchorPane.setBottomAnchor(container, 0d);
-        AnchorPane.setLeftAnchor(container, 0d);
+        Util.fitToAnchorPane(container);
     }
 
     public void init() {

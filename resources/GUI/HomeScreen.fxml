@@ -18,7 +18,7 @@
 
 <AnchorPane prefHeight="800.0" prefWidth="360.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="TOP_CENTER" layoutX="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" prefHeight="40.0">
                <children>
@@ -39,7 +39,7 @@
                   </ToggleButton>
                </children>
             </HBox>
-            <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="weatherMood" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="/images/snowflake-2.png" />
                </image>
@@ -49,7 +49,7 @@
             </ImageView>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label styleClass="outline" text="2">
+                  <Label fx:id="currentTemperature" styleClass="outline" text="2">
                      <font>
                         <Font name="System Bold" size="100.0" />
                      </font>
@@ -67,7 +67,7 @@
                   <Insets left="50.0" />
                </padding>
             </HBox>
-            <AnchorPane />
+            <AnchorPane fx:id="graphSwipeAnchor" />
             <ScrollPane hbarPolicy="ALWAYS" prefHeight="160.0" prefWidth="231.0">
                <content>
                   <GridPane prefHeight="140.0" prefWidth="703.0">
