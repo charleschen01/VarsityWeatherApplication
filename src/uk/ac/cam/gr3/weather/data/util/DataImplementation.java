@@ -16,19 +16,19 @@ public class DataImplementation implements WeatherService {
     private WeeklyData weeklyData;
 
     public DataImplementation(){
-        JSONObject data = new JSONObject();
-        JSONObject generalData = new JSONObject();
-        JSONObject snowReport = new JSONObject();
+        data = new JSONObject();
+        generalData = new JSONObject();
+        snowReport = new JSONObject();
         refresh();
     }
 
     @Override
     public void refresh() {
         setData();
-        HomeData peakData = new HomeData("upper", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast").getJSONObject(0).getJSONObject("upper"), data.getJSONArray("forecast").getJSONObject(0), data.getJSONArray("forecast"));
-        HomeData baseData = new HomeData("base", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast").getJSONObject(0).getJSONObject("base"), data.getJSONArray("forecast").getJSONObject(0), data.getJSONArray("forecast"));
-        SnowData snowData = new SnowData(snowReport);
-        WeeklyData weeklyData = new WeeklyData(generalData.getJSONArray("Days"));
+        peakData = new HomeData("upper", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast").getJSONObject(0).getJSONObject("upper"), data.getJSONArray("forecast").getJSONObject(0), data.getJSONArray("forecast"));
+        baseData = new HomeData("base", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast").getJSONObject(0).getJSONObject("base"), data.getJSONArray("forecast").getJSONObject(0), data.getJSONArray("forecast"));
+        snowData = new SnowData(snowReport);
+        weeklyData = new WeeklyData(generalData.getJSONArray("Days"));
     }
 
     @Override
@@ -65,7 +65,7 @@ public class DataImplementation implements WeatherService {
         DataImplementation test = new DataImplementation();
         test.getBaseData();
         test.getPeakData();
-        test.getSnowData();
+        test.getSnowData().getSnowConditions();
         test.getWeeklyData();
         test.refresh();
     }
