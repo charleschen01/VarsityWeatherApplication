@@ -1,9 +1,6 @@
 package uk.ac.cam.gr3.weather.data.util;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.io.IOException;
 
 public class SnowData {
     //Use the getter methods below to access the data
