@@ -53,8 +53,8 @@ public class WeeklyReportController {
     }
 
     public void init(WeatherService ws) {
-        for(Day d: ws.getWeeklyData().getWeek())WeekVBox.getChildren().add(dayBand(d.getNameOfDay(),d.getWeatherIcon(),d.getHighestTempersture()+" °C",d.getLowestTempersture()+" °C"));
-        //WeekVBox.getChildren().add(dayBand("Wednesday","WeatherIcons/PartCloudSleetSnowThunderNight.gif","5 °C","2 °C"));
-        //WeekVBox.getChildren().add(dayBand("Thursday","WeatherIcons/PartlyCloudyDay.gif","50 °C","-20 °C"));
+        for(Day d: ws.getWeeklyData().getWeek()) {
+            WeekVBox.getChildren().add(dayBand(d.getNameOfDay(),d.getWeatherIcon(),d.getHighestTempersture()+" °C",d.getLowestTempersture()+" °C"));
+        }
     }
 }
