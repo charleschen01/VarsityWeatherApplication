@@ -8,17 +8,17 @@ import java.util.Date;
 public class Day {
     //If you want to access these use the getter methods below.
     private String nameOfDay;
-    private int lowestTempersture;
-    private int highestTempersture;
+    private int lowestTemperature;
+    private int highestTemperature;
     private String weatherIcon;
 
     //constructor
-    public Day(String date, int lowestTempersture, int highestTempersture, String weatherIcon) {
-        refresh(date, lowestTempersture, highestTempersture, weatherIcon);
+    public Day(String date, int lowestTemperature, int highestTemperature, String weatherIcon) {
+        refresh(date, lowestTemperature, highestTemperature, weatherIcon);
     }
 
     //Refreshes the data corresponding to the day.
-    public void refresh(String date, int lowestTempersture, int highestTempersture, String weatherIcon) {
+    public void refresh(String date, int lowestTemperature, int highestTemperature, String weatherIcon) {
 
         //Converts the date into the day of the week
         Date now = null;
@@ -30,8 +30,8 @@ public class Day {
         SimpleDateFormat simpleDateformat = new SimpleDateFormat("E");
 
         this.nameOfDay = simpleDateformat.format(now);
-        this.lowestTempersture = lowestTempersture;
-        this.highestTempersture = highestTempersture;
+        this.lowestTemperature = lowestTemperature;
+        this.highestTemperature = highestTemperature;
         this.weatherIcon = weatherIcon;
     }
 
@@ -40,12 +40,12 @@ public class Day {
         return nameOfDay;
     }
 
-    public int getLowestTempersture() {
-        return lowestTempersture;
+    public int getLowestTemperature() {
+        return lowestTemperature;
     }
 
-    public int getHighestTempersture() {
-        return highestTempersture;
+    public int getHighestTemperature() {
+        return highestTemperature;
     }
 
     public String getWeatherIcon() {

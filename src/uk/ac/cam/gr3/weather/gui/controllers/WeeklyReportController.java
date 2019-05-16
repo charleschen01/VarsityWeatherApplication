@@ -18,11 +18,11 @@ public class WeeklyReportController {
 
     //add to the page a band describing a single day
     private HBox dayBand(String dayName, String icon, String tempHigh, String tempLow) {
-        HBox wednesday = new HBox();
+        HBox dayBox = new HBox();
         //<HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="360.0">
-        wednesday.setAlignment(Pos.CENTER_LEFT);
-        wednesday.setPrefHeight(50.0);
-        wednesday.setPrefWidth(360.0);
+        dayBox.setAlignment(Pos.CENTER_LEFT);
+        dayBox.setPrefHeight(50.0);
+        dayBox.setPrefWidth(360.0);
 
         Image moodImage = new Image(icon);
         ImageView mood = new ImageView(moodImage);
@@ -45,18 +45,16 @@ public class WeeklyReportController {
         tempMin.setPrefHeight(18.0);
         tempMin.setPrefWidth(43.0);
         tempMin.setTextFill(Color.web("#0000ff", 1.0));
-        wednesday.getChildren().add(mood);
-        wednesday.getChildren().add(day);
-        wednesday.getChildren().add(tempMax);
-        wednesday.getChildren().add(tempMin);
 
-        return wednesday;
+        dayBox.getChildren().addAll(mood, day, tempMax, tempMin);
+
+        return dayBox;
     }
 
     //Initiate (and fill) the weekly report page. takes as argument the Weather Service
     public void init(WeatherService ws) {
         for(Day d: ws.getWeeklyData().getWeek()) {
-            WeekVBox.getChildren().add(dayBand(d.getNameOfDay(),d.getWeatherIcon(),d.getHighestTempersture()+" °C",d.getLowestTempersture()+" °C"));
+            WeekVBox.getChildren().add(dayBand(d.getNameOfDay(),d.getWeatherIcon(),d.getHighestTemperature()+" °C",d.getLowestTemperature()+" °C"));
         }
     }
 }

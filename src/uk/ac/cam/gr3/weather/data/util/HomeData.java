@@ -26,17 +26,17 @@ public class HomeData {
     private int numFutureHours;
 
     //location needs to be "upper" or "base"
-    public HomeData (String location, JSONObject sunData, JSONObject currentLocationforecastData, JSONObject forecastData, JSONArray allForecastData) {
+    public HomeData (String location, JSONObject sunData, JSONObject currentLocationForecastData, JSONObject forecastData, JSONArray allForecastData) {
         numFutureHours = 7;
         sunrise = sunData.getString("sunrise_time");
         sunset = sunData.getString("sunset_time");
 
-        currentTemperature = currentLocationforecastData.getInt("temp_c");
-        weatherCondition = currentLocationforecastData.getString("wx_desc");
-        weatherIcon = currentLocationforecastData.getString("wx_icon");
-        windSpeed = currentLocationforecastData.getInt("windspd_kmh");
-        windDirection = currentLocationforecastData.getString("winddir_compass");
-        freshSnow = currentLocationforecastData.getInt("freshsnow_cm");
+        currentTemperature = currentLocationForecastData.getInt("temp_c");
+        weatherCondition = currentLocationForecastData.getString("wx_desc");
+        weatherIcon = currentLocationForecastData.getString("wx_icon");
+        windSpeed = currentLocationForecastData.getInt("windspd_kmh");
+        windDirection = currentLocationForecastData.getString("winddir_compass");
+        freshSnow = currentLocationForecastData.getInt("freshsnow_cm");
 
         visibility = forecastData.getInt("vis_km");
         humidity = forecastData.getInt("hum_pct");
@@ -45,17 +45,17 @@ public class HomeData {
 
         timeline = new ArrayList<>();
         String hour;
-        int temperture;
+        int temperature;
         String weatherIcon;
         int index = 0;
 
         while (index < numFutureHours){
-            JSONObject forecastTimeframe = allForecastData.getJSONObject(index);
-            JSONObject currentLocationforecastTimeframe = forecastTimeframe.getJSONObject(location);
-            hour = forecastTimeframe.getString("time");
-            temperture = currentLocationforecastTimeframe.getInt("temp_c");
-            weatherIcon = currentLocationforecastTimeframe.getString("wx_icon");
-            Hour h = new Hour(hour, temperture, weatherIcon);
+            JSONObject forecastTimeFrame = allForecastData.getJSONObject(index);
+            JSONObject currentLocationForecastTimeFrame = forecastTimeFrame.getJSONObject(location);
+            hour = forecastTimeFrame.getString("time");
+            temperature = currentLocationForecastTimeFrame.getInt("temp_c");
+            weatherIcon = currentLocationForecastTimeFrame.getString("wx_icon");
+            Hour h = new Hour(hour, temperature, weatherIcon);
             timeline.add(h);
             index++;
         }

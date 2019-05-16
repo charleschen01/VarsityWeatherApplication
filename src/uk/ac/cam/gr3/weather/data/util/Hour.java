@@ -4,18 +4,18 @@ package uk.ac.cam.gr3.weather.data.util;
 public class Hour {
     //If you want to access these use the getter methods below.
     private String hour; //24 hour clock in the format HH:MM
-    private int temperture;
+    private int temperature;
     private String weatherIcon;
 
     //constructor
-    public Hour(String hour, int temperture, String weatherIcon){
-        refresh(hour, temperture, weatherIcon);
+    public Hour(String hour, int temperature, String weatherIcon){
+        refresh(hour, temperature, weatherIcon);
     }
 
     //Refreshes the data corresponding to the hour.
-    public void refresh(String hour, int temperture, String weatherIcon) {
+    public void refresh(String hour, int temperature, String weatherIcon) {
         this.hour = hour;
-        this.temperture = temperture;
+        this.temperature = temperature;
         this.weatherIcon = weatherIcon;
     }
 
@@ -24,8 +24,8 @@ public class Hour {
         return hour;
     }
 
-    public int getTemperture() {
-        return temperture;
+    public int getTemperature() {
+        return temperature;
     }
 
     public String getWeatherIcon() {
