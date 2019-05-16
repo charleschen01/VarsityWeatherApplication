@@ -9,7 +9,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import uk.ac.cam.gr3.weather.data.util.Day;
-import uk.ac.cam.gr3.weather.data.util.WeatherService;
+import uk.ac.cam.gr3.weather.data.WeatherService;
 
 public class WeeklyReportController {
 
