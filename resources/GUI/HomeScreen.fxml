@@ -3,7 +3,6 @@
 <?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -16,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="800.0" prefWidth="360.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController">
+<AnchorPane prefHeight="850.0" prefWidth="360.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController">
    <children>
       <VBox alignment="TOP_CENTER" layoutX="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -47,17 +46,23 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </ImageView>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="153.0" prefWidth="360.0">
                <children>
                   <Label fx:id="currentTemperature" styleClass="outline" text="2">
                      <font>
                         <Font name="System Bold" size="100.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
                   </Label>
                   <Label styleClass="outline" text="℃">
                      <font>
                         <Font name="System Bold" size="50.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
                   </Label>
                </children>
                <VBox.margin>
@@ -67,75 +72,10 @@
                   <Insets left="50.0" />
                </padding>
             </HBox>
-            <AnchorPane fx:id="graphSwipeAnchor" />
-            <ScrollPane hbarPolicy="ALWAYS" prefHeight="160.0" prefWidth="231.0">
-               <content>
-                  <GridPane prefHeight="140.0" prefWidth="703.0">
-                    <columnConstraints>
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                      <RowConstraints maxHeight="79.82943725585938" minHeight="10.0" prefHeight="69.07321166992188" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="40.85357666015625" minHeight="10.0" prefHeight="35.588653564453125" vgrow="SOMETIMES" />
-                      <RowConstraints maxHeight="38.683013916015625" minHeight="10.0" prefHeight="34.411346435546875" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                     <children>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-                           <children>
-                              <Label alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="32.0" text="3">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="36.0" prefWidth="37.0" text="℃">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox layoutX="10.0" layoutY="79.0" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                           <children>
-                              <Label alignment="CENTER_RIGHT" prefHeight="49.0" prefWidth="32.0" text="3">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="36.0" prefWidth="37.0" text="℃">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
-                           <children>
-                              <Label alignment="CENTER_RIGHT" prefHeight="35.0" prefWidth="28.0" text="10">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                              <Label prefHeight="49.0" prefWidth="32.0" text="AM">
-                                 <font>
-                                    <Font size="15.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
-                     </children>
-                  </GridPane>
-               </content>
-            </ScrollPane>
+            <AnchorPane fx:id="graphSwipeAnchor" style="-fx-border-width: 1px 0 1px 0; -fx-border-color: black;">
+               <padding>
+                  <Insets bottom="10.0" top="10.0" />
+               </padding></AnchorPane>
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
@@ -149,19 +89,19 @@
                   <RowConstraints prefHeight="40.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ImageView fitHeight="80.0" fitWidth="102.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="85.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="/images/wind.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="87.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                  <ImageView fitHeight="90.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                      <image>
                         <Image url="/images/watch.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="91.0" fitWidth="84.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                  <ImageView fitHeight="196.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                      <image>
-                        <Image url="/images/Sunset-512.png" />
+                        <Image url="/images/sunset-logo-icon-91959.png" />
                      </image>
                   </ImageView>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
@@ -200,6 +140,25 @@
                            </font>
                         </Label>
                         <Label alignment="CENTER" prefHeight="41.0" prefWidth="37.0" text="PM">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <ImageView fitHeight="79.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                     <image>
+                        <Image url="/images/Clouds-icon.png" />
+                     </image>
+                  </ImageView>
+                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="59.0" text="60">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label alignment="CENTER" prefHeight="57.0" prefWidth="28.0" text="\%">
                            <font>
                               <Font size="20.0" />
                            </font>

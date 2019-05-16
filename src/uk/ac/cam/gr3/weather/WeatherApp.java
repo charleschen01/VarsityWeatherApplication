@@ -76,7 +76,7 @@ public class WeatherApp extends Application {
         frameController.setSwipeContainer(swipeContainer);
         frameController.init();
 
-        homeScreenController.setHSwipePane(pane);
+        //homeScreenController.setHSwipePane(pane);
         homeScreenController.init();
 
         weeklyReportController.init(service);
