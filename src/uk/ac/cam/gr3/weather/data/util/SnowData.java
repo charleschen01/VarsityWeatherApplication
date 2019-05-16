@@ -1,5 +1,6 @@
 package uk.ac.cam.gr3.weather.data.util;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -7,6 +8,7 @@ import java.io.IOException;
 public class SnowData {
     //Use the getter methods below to access the data
     private String snowConditions;
+    private String weatherIcon;
     private String lastSnowed;
     private int percentageOpenRuns;
     private double snowFallTop;
@@ -21,13 +23,18 @@ public class SnowData {
     public void refresh() {
         //gets the Json object from the URL
         JSONObject data = new JSONObject();
+        JSONObject iconData = new JSONObject();
+
         try {
             data = URLConnectionReader.getJSON("https://api.weatherunlocked.com/api/snowreport/333020?app_id=5d6c6b76&app_key=5a54d2f573d149bb65b2a2b7fd05cfc3");
+            iconData = URLConnectionReader.getJSON("https://api.weatherunlocked.com/api/resortforecast/333020?app_id=5d6c6b76&app_key=5a54d2f573d149bb65b2a2b7fd05cfc3");
         } catch (IOException  e) {
             e.printStackTrace();
         }
+        JSONObject midIconData =  iconData.getJSONArray("forecast").getJSONObject(0).getJSONObject("mid");
 
         //updates the attributes
+        weatherIcon = "WeatherIcons/" + midIconData.getString("wx_icon");
         snowConditions = data.getString("conditions");
         lastSnowed = data.getString("lastsnow");
         percentageOpenRuns = data.getInt("pctopen");
@@ -54,6 +61,15 @@ public class SnowData {
 
     public double getSnowFallBottom() {
         return snowFallBottom;
+    }
+
+    public String getWeatherIcon() {
+        return weatherIcon;
+    }
+
+    public static void main(String[] args) {
+        SnowData test = new SnowData();
+        System.out.println(test.getWeatherIcon());
     }
 }
 
