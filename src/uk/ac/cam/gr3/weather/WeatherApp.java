@@ -60,7 +60,7 @@ public class WeatherApp extends Application {
         frameController.setSwipeContainer(swipeContainer);
         frameController.init();
 
-        homeScreenController.init();
+        homeScreenController.init(service);
 
         weeklyReportController.init(service);
 

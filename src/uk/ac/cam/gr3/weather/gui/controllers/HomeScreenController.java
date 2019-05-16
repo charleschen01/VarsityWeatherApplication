@@ -5,21 +5,40 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.ObjectBinding;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import uk.ac.cam.gr3.weather.Util;
+import uk.ac.cam.gr3.weather.data.WeatherService;
+import uk.ac.cam.gr3.weather.data.util.HomeData;
+import uk.ac.cam.gr3.weather.data.util.Hour;
 import uk.ac.cam.gr3.weather.gui.util.HSwipePane;
+
+import java.util.ArrayList;
 
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
 
 public class HomeScreenController {
 
+    private HomeData baseData;
+
+    private HomeData peakData;
+
     @FXML
     private ToggleGroup altitudeSelect;
+
+    @FXML
+    private ToggleButton peakButton;
+
+    @FXML
+    private ToggleButton baseButton;
 
     @FXML
     private ImageView weatherMood;
@@ -28,78 +47,129 @@ public class HomeScreenController {
     private Label currentTemperature;
 
     @FXML
+    private Label windSpeed;
+
+    @FXML
+    private Label visibility;
+
+    @FXML
+    private Label sunSetTime;
+
+    @FXML
+    private Label cloudCoverage;
+
+    @FXML
     private AnchorPane graphSwipeAnchor;
 
     private Region hourlyBreakDown;
 
-    private void setHSwipePane(HSwipePane pane) {
+    public void setHSwipePane(HSwipePane pane) {
 
         graphSwipeAnchor.getChildren().setAll(pane);
 
         Util.fitToAnchorPane(pane);
     }
 
-    private void setHourlyBreakDown() { //create a pane to pass into HSwipePane
+    public void setWeatherMood(String url) {
+        weatherMood.setImage(new Image("/WeatherIcons/" + url));
+        weatherMood.setPreserveRatio(true);
+        weatherMood.setFitWidth(300);
+    }
+
+    public void setHourlyBreakDown(ArrayList<Hour> timeline) { //create a pane to pass into HSwipePane
+
+        int i = 0;
 
         //create table
         GridPane table = new GridPane();
 
-        //create data arrays
-        String[] moods = new String[8];
-        for (int i = 0; i < moods.length; i++) {
-            moods[i] = "/WeatherIcons/HeavySnow.gif";
-        }
-        String[] temps = new String[8];
-        for (int i = 0; i < temps.length; i++) {
-            temps[i] = "2℃";
-        }
-        String[] times = new String[8];
-        for (int i = 0; i < times.length; i++) {
-            times[i] = "9AM";
-        }
+        for (Hour hour:timeline) {
 
-        for (int i = 0; i<8; i++) {
+            i++;
 
             //add column constraints
             table.getColumnConstraints().add(new ColumnConstraints(USE_PREF_SIZE, 100, USE_PREF_SIZE, Priority.SOMETIMES, HPos.CENTER, true));
 
             //create weather mood
-            ImageView mood = new ImageView(moods[i]);
+            ImageView mood = new ImageView("/WeatherIcons/" + hour.getWeatherIcon());
             mood.setFitWidth(100);
             mood.setPreserveRatio(true);
 
             //create temperature label
-            Label temp = new Label(temps[i]);
+            Label temp = new Label(Integer.toString(hour.getTemperature()) + "℃");
             temp.setFont(Font.font(18));
             temp.setPrefHeight(30);
 
             //create time label
-            Label time = new Label(times[i]);
+            Label time = new Label(hour.getHour());
             time.setFont(Font.font(18));
             time.setPrefHeight(30);
 
             //put content into the table
-            table.add(mood, i, 0);
-            table.add(temp, i, 1);
-            table.add(time, i, 2);
+            table.add(mood, i-1, 0);
+            table.add(temp, i-1, 1);
+            table.add(time, i-1, 2);
         }
 
         hourlyBreakDown = table;
 
     }
 
-    public void init() {
+    //show weather data at base
+    public void showBase() {
+        show(baseData);
+    }
 
-        //create HSwipePane
-        setHourlyBreakDown();
+    //show weather data at peak
+    public void showPeak() {
+        show(peakData);
+    }
+
+
+    //show a particular type of data
+    public void show(HomeData homeData) {
+
+        //set weatherMood
+        setWeatherMood(homeData.getWeatherIcon());
+
+        //set temperature
+        currentTemperature.setText(Integer.toString(homeData.getCurrentTemperature()));
+
+        //set hourly BreakDown, create HSwipePane
+        setHourlyBreakDown(homeData.getTimeline());
         HSwipePane HBD = new HSwipePane(hourlyBreakDown);
         setHSwipePane(HBD);
 
+        //set wind
+        windSpeed.setText(Integer.toString(homeData.getWindSpeed()));
+
+        //set visibility
+        visibility.setText(Integer.toString(homeData.getVisibility()));
+
+        //set sunset time
+        sunSetTime.setText(homeData.getSunset());
+
+        //set cloud
+        cloudCoverage.setText(Integer.toString(homeData.getCloudCoverage()));
+
+    }
+    public void init(WeatherService service) {
+
+        this.peakData = service.getPeakData();
+        this.baseData = service.getBaseData();
+
+        showBase();
 
         altitudeSelect.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null)
                 oldValue.setSelected(true);
+            else {
+                //if press a different button base or peak: display peak or base data accordingly
+                if (newValue == baseButton) showBase();
+                else if (newValue == peakButton) showPeak();
+            }
         });
+
 
         Platform.runLater(() -> {
             ObjectBinding<Rectangle> clipBinding = Bindings.createObjectBinding(() -> new Rectangle(0, 0, graphSwipeAnchor.getWidth(), graphSwipeAnchor.getHeight()), graphSwipeAnchor.layoutBoundsProperty());

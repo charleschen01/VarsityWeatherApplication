@@ -21,7 +21,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="40.0">
                <children>
-                  <ToggleButton focusTraversable="false" mnemonicParsing="false" prefWidth="50.0" text="Peak">
+                  <ToggleButton fx:id="peakButton" focusTraversable="false" mnemonicParsing="false" prefWidth="50.0" text="Peak">
                      <toggleGroup>
                         <ToggleGroup fx:id="altitudeSelect" />
                      </toggleGroup>
@@ -30,7 +30,7 @@
                         <String fx:value="left" />
                      </styleClass>
                   </ToggleButton>
-                  <ToggleButton focusTraversable="false" mnemonicParsing="false" prefWidth="50.0" selected="true" text="Base" toggleGroup="$altitudeSelect">
+                  <ToggleButton fx:id="baseButton" focusTraversable="false" mnemonicParsing="false" prefWidth="50.0" selected="true" text="Base" toggleGroup="$altitudeSelect">
                      <styleClass>
                         <String fx:value="altitude-button" />
                         <String fx:value="right" />
@@ -106,7 +106,7 @@
                   </ImageView>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="50.0" text="8" textAlignment="RIGHT">
+                        <Label fx:id="windSpeed" alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="50.0" text="8" textAlignment="RIGHT">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -120,7 +120,7 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="56.0" text="55">
+                        <Label fx:id="visibility" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="56.0" text="55">
                            <font>
                               <Font size="25.0" />
                            </font>
@@ -134,14 +134,9 @@
                   </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="69.0" text="7:00">
+                        <Label fx:id="sunSetTime" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="90.0" text="7:00">
                            <font>
                               <Font size="25.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="41.0" prefWidth="37.0" text="PM">
-                           <font>
-                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
@@ -153,7 +148,7 @@
                   </ImageView>
                   <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
                      <children>
-                        <Label alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="59.0" text="60">
+                        <Label fx:id="cloudCoverage" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="59.0" text="60">
                            <font>
                               <Font size="25.0" />
                            </font>
