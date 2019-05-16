@@ -28,7 +28,7 @@ public class DataImplementation implements WeatherService {
         HomeData peakData = new HomeData("upper", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast").getJSONObject(0).getJSONObject("upper"), data.getJSONArray("forecast").getJSONObject(0), data.getJSONArray("forecast"));
         HomeData baseData = new HomeData("base", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast").getJSONObject(0).getJSONObject("base"), data.getJSONArray("forecast").getJSONObject(0), data.getJSONArray("forecast"));
         SnowData snowData = new SnowData(snowReport);
-        WeeklyData weeklyData = new WeeklyData(data.getJSONArray("Days"));
+        WeeklyData weeklyData = new WeeklyData(generalData.getJSONArray("Days"));
     }
 
     @Override
@@ -51,7 +51,7 @@ public class DataImplementation implements WeatherService {
         return weeklyData;
     }
 
-    public void setData(){
+    private void setData(){
         try {
             data = URLConnectionReader.getJSON("https://api.weatherunlocked.com/api/resortforecast/333020?app_id=5d6c6b76&app_key=5a54d2f573d149bb65b2a2b7fd05cfc3");
             generalData = URLConnectionReader.getJSON("http://api.weatherunlocked.com/api/forecast/fr.73440?app_id=34ef604f&app_key=9e15b25a985bb34ddc8db6f973324353");
@@ -59,5 +59,14 @@ public class DataImplementation implements WeatherService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void main(String[] args) {
+        DataImplementation test = new DataImplementation();
+        test.getBaseData();
+        test.getPeakData();
+        test.getSnowData();
+        test.getWeeklyData();
+        test.refresh();
     }
 }

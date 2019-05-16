@@ -2,7 +2,6 @@ package uk.ac.cam.gr3.weather.data.util;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.io.IOException;
 import java.util.ArrayList;
 
 //This provides data for the home screen
