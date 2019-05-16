@@ -23,8 +23,6 @@ public class SnowPane extends GridPane {
         setHgap(10);
         setVgap(10);
 
-        setBackground(new Background(new BackgroundImage(new Image("background.jpg"), null, null, null, null)));
-
         ColumnConstraints column1 = new ColumnConstraints();
         column1.setMinWidth(40);
         this.getColumnConstraints().addAll(column1);

@@ -34,6 +34,7 @@ public class SwipeContainer extends Region {
         this.screenWidth = screenWidth;
 
         content = new HBox(snowReport, homeScreen, weeklyReport);
+        content.setStyle("-fx-background-image: url('/background_new.png');");
 
         displayingNormalised = content.translateXProperty().divide(-screenWidth);
 
