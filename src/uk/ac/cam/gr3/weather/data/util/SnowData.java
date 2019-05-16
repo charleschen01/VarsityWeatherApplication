@@ -11,7 +11,7 @@ public class SnowData {
     private double snowFallBottom;
 
 
-    public SnowData (JSONObject data) {
+    SnowData(JSONObject data) {
         //updates the attributes with the data from the Snow report
         snowConditions = data.getString("conditions");
         lastSnowed = data.getString("lastsnow");
@@ -42,23 +42,23 @@ public class SnowData {
     }
 
     //setters
-    protected void setSnowConditions(String snowConditions) {
+    void setSnowConditions(String snowConditions) {
         this.snowConditions = snowConditions;
     }
 
-    protected void setLastSnowed(String lastSnowed) {
+    void setLastSnowed(String lastSnowed) {
         this.lastSnowed = lastSnowed;
     }
 
-    protected void setPercentageOpenRuns(int percentageOpenRuns) {
+    void setPercentageOpenRuns(int percentageOpenRuns) {
         this.percentageOpenRuns = percentageOpenRuns;
     }
 
-    protected void setSnowFallTop(double snowFallTop) {
+    void setSnowFallTop(double snowFallTop) {
         this.snowFallTop = snowFallTop;
     }
 
-    protected void setSnowFallBottom(double snowFallBottom) {
+    void setSnowFallBottom(double snowFallBottom) {
         this.snowFallBottom = snowFallBottom;
     }
 }

@@ -26,8 +26,8 @@ public class DataImplementation implements WeatherService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        peakData = new HomeData("upper", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast").getJSONObject(0).getJSONObject("upper"), data.getJSONArray("forecast").getJSONObject(0), data.getJSONArray("forecast"));
-        baseData = new HomeData("base", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast").getJSONObject(0).getJSONObject("base"), data.getJSONArray("forecast").getJSONObject(0), data.getJSONArray("forecast"));
+        peakData = new HomeData("upper", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast"));
+        baseData = new HomeData("base", generalData.getJSONArray("Days").getJSONObject(0), data.getJSONArray("forecast"));
         weeklyData = new WeeklyData(generalData.getJSONArray("Days"));
         snowData = new SnowData(snowReport);
 
@@ -42,6 +42,53 @@ public class DataImplementation implements WeatherService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        //refreshes the homeData
+        //data for the current timestamp
+        JSONObject nonLocationSpecificData = data.getJSONArray("forecast").getJSONObject(0);
+
+        //----refreshes the peakData
+        JSONObject upperSpecificData = data.getJSONArray("forecast").getJSONObject(0).getJSONObject("upper");
+
+        peakData.setWeatherIcon(upperSpecificData.getString("wx_icon"));
+        peakData.setCurrentTemperature(upperSpecificData.getInt("temp_c"));
+        peakData.setWeatherCondition(upperSpecificData.getString("wx_desc"));
+        peakData.setWindSpeed(upperSpecificData.getInt("windspd_kmh"));
+
+        peakData.setCloudCoverage(nonLocationSpecificData.getInt("highcloud_pct"));
+        peakData.setVisibility(nonLocationSpecificData.getInt("vis_km"));
+
+        peakData.setTimeline(data.getJSONArray("forecast"));
+
+        peakData.setSunrise(generalData.getJSONArray("Days").getJSONObject(0).getString("sunrise_time"));
+
+        //----refreshes the baseData
+        JSONObject baseSpecificData = data.getJSONArray("forecast").getJSONObject(0).getJSONObject("base");
+
+        baseData.setWeatherIcon(baseSpecificData.getString("wx_icon"));
+        baseData.setCurrentTemperature(baseSpecificData.getInt("temp_c"));
+        baseData.setWeatherCondition(baseSpecificData.getString("wx_desc"));
+        baseData.setWindSpeed(baseSpecificData.getInt("windspd_kmh"));
+
+        baseData.setCloudCoverage(nonLocationSpecificData.getInt("lowloud_pct"));
+        baseData.setVisibility(nonLocationSpecificData.getInt("vis_km"));
+
+        baseData.setTimeline(data.getJSONArray("forecast"));
+
+        baseData.setSunrise(generalData.getJSONArray("Days").getJSONObject(0).getString("sunrise_time"));
+
+        //----delete if not extra widgets
+        peakData.setSunset(generalData.getJSONArray("Days").getJSONObject(0).getString("sunset_time"));
+        peakData.setHumidity(nonLocationSpecificData.getInt("hum_pct"));
+        peakData.setWindDirection(upperSpecificData.getString("winddir_compass"));
+        peakData.setFreshSnow(upperSpecificData.getInt("freshsnow_cm"));
+        baseData.setSunset(generalData.getJSONArray("Days").getJSONObject(0).getString("sunset_time"));
+        baseData.setHumidity(nonLocationSpecificData.getInt("hum_pct"));
+        baseData.setWindDirection(baseSpecificData.getString("winddir_compass"));
+        baseData.setFreshSnow(baseSpecificData.getInt("freshsnow_cm"));
+
+        //refreshes the weeklyData
+        weeklyData.setWeek(generalData.getJSONArray("Days"));
 
         //refreshes the snowData
         snowData.setSnowConditions(snowReport.getString("conditions"));
@@ -69,15 +116,5 @@ public class DataImplementation implements WeatherService {
     @Override
     public WeeklyData getWeeklyData() {
         return weeklyData;
-    }
-
-
-    public static void main(String[] args) {
-        DataImplementation test = new DataImplementation();
-        test.getBaseData();
-        test.getPeakData();
-        test.getSnowData().getSnowConditions();
-        test.getWeeklyData();
-        test.refresh();
     }
 }

@@ -13,7 +13,7 @@ public class Day {
     private String weatherIcon;
 
     //constructor
-    public Day(String date, int lowestTempersture, int highestTempersture, String weatherIcon) {
+    Day(String date, int lowestTempersture, int highestTempersture, String weatherIcon) {
         //Converts the date into the day of the week
         Date now = null;
         try {
@@ -46,19 +46,28 @@ public class Day {
         return weatherIcon;
     }
 
-    protected void setNameOfDay(String nameOfDay) {
-        this.nameOfDay = nameOfDay;
+
+    //setters
+    void setNameOfDay(String date) {
+        Date now = null;
+        try {
+            now = new SimpleDateFormat("dd/MM/yyyy").parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        SimpleDateFormat simpleDateformat = new SimpleDateFormat("E");
+        this.nameOfDay = simpleDateformat.format(now);
     }
 
-    protected void setLowestTemperature(int lowestTempersture) {
+    void setLowestTemperature(int lowestTempersture) {
         this.lowestTemperature = lowestTempersture;
     }
 
-    protected void getHighestTemperature(int highestTempersture) {
+    void setHighestTemperature(int highestTempersture) {
         this.highestTemperature = highestTempersture;
     }
 
-    protected void setWeatherIcon(String weatherIcon) {
+    void setWeatherIcon(String weatherIcon) {
         this.weatherIcon = weatherIcon;
     }
 }

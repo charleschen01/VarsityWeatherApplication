@@ -13,44 +13,50 @@ public class HomeData {
     private ArrayList<Hour> timeline;
     private int visibility;
     private int windSpeed;
+    private int cloudCoverage;
     private String sunrise;
+
+
+    //extra data -delete if not used as widget
     private String sunset;
-
-
-    //These are some extra states that could be used for widgets or deleted
     private String windDirection;
     private int freshSnow;
-    private int cloudCoverage;
     private int humidity;
 
-    private int numFutureHours;
-
     //location needs to be "upper" or "base"
-    public HomeData (String location, JSONObject sunData, JSONObject currentLocationForecastData, JSONObject forecastData, JSONArray allForecastData) {
-        numFutureHours = 7;
+    HomeData(String location, JSONObject sunData, JSONArray forecastData) {
+        int numFutureHours = 7;
+
+        //data for the current timestamp
+        JSONObject locationSpecificData = forecastData.getJSONObject(0).getJSONObject(location);
+        JSONObject nonLocationSpecificData = forecastData.getJSONObject(0);
+
+
         sunrise = sunData.getString("sunrise_time");
+
+        currentTemperature = locationSpecificData.getInt("temp_c");
+        weatherCondition = locationSpecificData.getString("wx_desc");
+        weatherIcon = locationSpecificData.getString("wx_icon");
+        windSpeed = locationSpecificData.getInt("windspd_kmh");
+
+        cloudCoverage = (location.equals("upper") ? nonLocationSpecificData.getInt("highcloud_pct") : nonLocationSpecificData.getInt("lowcloud_pct") );
+        visibility = nonLocationSpecificData.getInt("vis_km");
+
+        //extra data -delete if not used as widget
         sunset = sunData.getString("sunset_time");
+        humidity = nonLocationSpecificData.getInt("hum_pct");
+        freshSnow = locationSpecificData.getInt("freshsnow_cm");
+        windDirection = locationSpecificData.getString("winddir_compass");
 
-        currentTemperature = currentLocationForecastData.getInt("temp_c");
-        weatherCondition = currentLocationForecastData.getString("wx_desc");
-        weatherIcon = currentLocationForecastData.getString("wx_icon");
-        windSpeed = currentLocationForecastData.getInt("windspd_kmh");
-        windDirection = currentLocationForecastData.getString("winddir_compass");
-        freshSnow = currentLocationForecastData.getInt("freshsnow_cm");
-
-        visibility = forecastData.getInt("vis_km");
-        humidity = forecastData.getInt("hum_pct");
-        cloudCoverage = (location.equals("upper") ? forecastData.getInt("highcloud_pct") :forecastData.getInt("lowcloud_pct") );
-
-
+        //This is the 3-hourly weather timeline
         timeline = new ArrayList<>();
         String hour;
         int temperature;
         String weatherIcon;
         int index = 0;
 
-        while (index < numFutureHours){
-            JSONObject forecastTimeFrame = allForecastData.getJSONObject(index);
+        while (index <= numFutureHours){
+            JSONObject forecastTimeFrame = forecastData.getJSONObject(index);
             JSONObject currentLocationForecastTimeFrame = forecastTimeFrame.getJSONObject(location);
             hour = forecastTimeFrame.getString("time");
             temperature = currentLocationForecastTimeFrame.getInt("temp_c");
@@ -59,10 +65,13 @@ public class HomeData {
             timeline.add(h);
             index++;
         }
-
     }
 
     //getters
+    public int getCloudCoverage() {
+        return cloudCoverage;
+    }
+
     public int getCurrentTemperature() {
         return currentTemperature;
     }
@@ -91,7 +100,48 @@ public class HomeData {
         return sunrise;
     }
 
-    //getters for extra data
+    //setters
+    void setCurrentTemperature(int currentTemperature) {
+        this.currentTemperature = currentTemperature;
+    }
+
+    void setWeatherCondition(String weatherCondition) {
+        this.weatherCondition = weatherCondition;
+    }
+
+    void setWeatherIcon(String weatherIcon) {
+        this.weatherIcon = weatherIcon;
+    }
+
+    void setVisibility(int visibility) {
+        this.visibility = visibility;
+    }
+
+    void setWindSpeed(int windSpeed) {
+        this.windSpeed = windSpeed;
+    }
+
+    void setCloudCoverage(int cloudCoverage) {
+        this.cloudCoverage = cloudCoverage;
+    }
+
+    void setSunrise(String sunrise) {
+        this.sunrise = sunrise;
+    }
+
+    void setTimeline(JSONArray data) {
+        int index = 0;
+        for (Hour hour : timeline){
+            JSONObject timestampData = data.getJSONObject(index);
+            hour.setHour(timestampData.getString("time"));
+            hour.setTemperature(timestampData.getInt("temp_c"));
+            hour.setWeatherIcon(timestampData.getString("wx_icon"));
+            index ++;
+        }
+    }
+
+
+    //getters and setters for extra data
     public String getSunset() {
         return sunset;
     }
@@ -104,11 +154,23 @@ public class HomeData {
         return freshSnow;
     }
 
-    public int getCloudCoverage() {
-        return cloudCoverage;
-    }
-
     public int getHumidity() {
         return humidity;
+    }
+
+    void setSunset(String sunset) {
+        this.sunset = sunset;
+    }
+
+    void setWindDirection(String windDirection) {
+        this.windDirection = windDirection;
+    }
+
+    void setFreshSnow(int freshSnow) {
+        this.freshSnow = freshSnow;
+    }
+
+    void setHumidity(int humidity) {
+        this.humidity = humidity;
     }
 }

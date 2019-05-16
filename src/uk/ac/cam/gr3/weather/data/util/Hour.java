@@ -8,18 +8,13 @@ public class Hour {
     private String weatherIcon;
 
     //constructor
-    public Hour(String hour, int temperature, String weatherIcon){
-        refresh(hour, temperature, weatherIcon);
-    }
-
-    //Refreshes the data corresponding to the hour.
-    public void refresh(String hour, int temperature, String weatherIcon) {
+    Hour(String hour, int temperature, String weatherIcon){
         this.hour = hour;
         this.temperature = temperature;
         this.weatherIcon = weatherIcon;
     }
 
-    //getter methods
+    //getters
     public String getHour() {
         return hour;
     }
@@ -30,5 +25,18 @@ public class Hour {
 
     public String getWeatherIcon() {
         return weatherIcon;
+    }
+
+    //setters
+    void setHour(String hour) {
+        this.hour = hour;
+    }
+
+    void setTemperature(int temperature) {
+        this.temperature = temperature;
+    }
+
+    void setWeatherIcon(String weatherIcon) {
+        this.weatherIcon = weatherIcon;
     }
 }
