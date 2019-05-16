@@ -32,14 +32,14 @@ public class HomeScreenController {
 
     private Region hourlyBreakDown;
 
-    public void setHSwipePane(HSwipePane pane) {
+    private void setHSwipePane(HSwipePane pane) {
 
         graphSwipeAnchor.getChildren().setAll(pane);
 
         Util.fitToAnchorPane(pane);
     }
 
-    public void setHourlyBreakDown() { //create a pane to pass into HSwipePane
+    private void setHourlyBreakDown() { //create a pane to pass into HSwipePane
 
         //create table
         GridPane table = new GridPane();
@@ -87,6 +87,7 @@ public class HomeScreenController {
         hourlyBreakDown = table;
 
     }
+
     public void init() {
 
         //create HSwipePane
@@ -105,6 +106,4 @@ public class HomeScreenController {
             graphSwipeAnchor.clipProperty().bind(clipBinding);
         });
     }
-
-
 }

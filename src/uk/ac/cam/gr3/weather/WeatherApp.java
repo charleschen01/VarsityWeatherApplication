@@ -3,7 +3,6 @@ package uk.ac.cam.gr3.weather;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import uk.ac.cam.gr3.weather.data.util.DataImplementation;
@@ -11,7 +10,6 @@ import uk.ac.cam.gr3.weather.gui.controllers.FrameController;
 import uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController;
 import uk.ac.cam.gr3.weather.gui.controllers.WeeklyReportController;
 import uk.ac.cam.gr3.weather.gui.panes.SnowPane;
-import uk.ac.cam.gr3.weather.gui.util.HSwipePane;
 import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
 
 import java.io.IOException;
@@ -53,30 +51,15 @@ public class WeatherApp extends Application {
         WeeklyReportController weeklyReportController = weekLoader.getController();
 
         int width = (int) frame.getPrefWidth();
-        int height = (int) frame.getPrefHeight();
 
         snowReport.setPrefWidth(width);
-//        snowReport.setPrefHeight(height);
-//        homeScreen.setPrefWidth(width);
-//        homeScreen.setPrefHeight(height);
-//        weeklyReport.setPrefWidth(width);
-//        weeklyReport.setPrefHeight(height);
 
         SwipeContainer swipeContainer = new SwipeContainer(snowReport, homeScreen, weeklyReport, width);
-
-        Pane t = new Pane();
-        t.setPrefHeight(200);
-        t.setPrefWidth(600);
-
-        t.setStyle("-fx-background-color: linear-gradient(to right, red, blue)");
-
-        HSwipePane pane = new HSwipePane(t);
 
         // ---- Initialise controllers ----
         frameController.setSwipeContainer(swipeContainer);
         frameController.init();
 
-        //homeScreenController.setHSwipePane(pane);
         homeScreenController.init();
 
         weeklyReportController.init(service);
