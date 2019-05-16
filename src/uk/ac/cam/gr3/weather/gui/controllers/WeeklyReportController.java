@@ -16,6 +16,7 @@ public class WeeklyReportController {
     @FXML
     private VBox WeekVBox;
 
+    //add to the page a band describing a single day
     private HBox dayBand(String dayName, String icon, String tempHigh, String tempLow) {
         HBox wednesday = new HBox();
         //<HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="360.0">
@@ -52,6 +53,7 @@ public class WeeklyReportController {
         return wednesday;
     }
 
+    //Initiate (and fill) the weekly report page. takes as argument the Weather Service
     public void init(WeatherService ws) {
         for(Day d: ws.getWeeklyData().getWeek()) {
             WeekVBox.getChildren().add(dayBand(d.getNameOfDay(),d.getWeatherIcon(),d.getHighestTempersture()+" °C",d.getLowestTempersture()+" °C"));
