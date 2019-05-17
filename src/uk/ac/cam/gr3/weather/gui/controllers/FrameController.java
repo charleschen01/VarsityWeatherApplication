@@ -12,9 +12,24 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 import uk.ac.cam.gr3.weather.Util;
+import uk.ac.cam.gr3.weather.data.WeatherService;
+import uk.ac.cam.gr3.weather.gui.util.FXMLController;
 import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
 
-public class FrameController {
+public class FrameController extends FXMLController {
+
+    private SwipeContainer container;
+
+    private DoubleProperty menuBarTranslateY = new SimpleDoubleProperty(0);
+    private DoubleProperty menuBarRotate = new SimpleDoubleProperty(0);
+
+    private BooleanProperty isShowingMenu = new SimpleBooleanProperty(false);
+
+    private Transition menuToggleTransition;
+
+    public FrameController(WeatherService service) {
+        super(service);
+    }
 
     @FXML
     private AnchorPane swipeAnchor;
@@ -31,26 +46,8 @@ public class FrameController {
     @FXML
     private Pane bottomNavigationSelection;
 
-    private SwipeContainer container;
-
-    private DoubleProperty menuBarTranslateY = new SimpleDoubleProperty(0);
-    private DoubleProperty menuBarRotate = new SimpleDoubleProperty(0);
-
-    private BooleanProperty isShowingMenu = new SimpleBooleanProperty(false);
-
-    private Transition menuToggleTransition;
-
-    // TODO clean up initialisation
-
-    public void setSwipeContainer(SwipeContainer container) {
-
-        this.container = container;
-        swipeAnchor.getChildren().setAll(this.container);
-
-        Util.fitToAnchorPane(container);
-    }
-
-    public void init() {
+    @Override
+    protected void initialize() {
 
         menuBar1.translateYProperty().bind(menuBarTranslateY);
         menuBar3.translateYProperty().bind(menuBarTranslateY.negate());
@@ -86,6 +83,14 @@ public class FrameController {
 
         // TODO wrap with a parallel transition to pull the menu in / out of the screen
         menuToggleTransition = new SequentialTransition(translate, rotate);
+    }
+
+    public void setSwipeContainer(SwipeContainer container) {
+
+        this.container = container;
+        swipeAnchor.getChildren().setAll(this.container);
+
+        Util.fitToAnchorPane(container);
 
         bottomNavigationSelection.translateXProperty().bind(container.displayingNormalisedProperty().subtract(1).multiply(70));
     }

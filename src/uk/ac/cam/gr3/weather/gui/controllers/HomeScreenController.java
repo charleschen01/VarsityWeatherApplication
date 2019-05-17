@@ -5,8 +5,6 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.ObjectBinding;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
@@ -19,17 +17,23 @@ import uk.ac.cam.gr3.weather.Util;
 import uk.ac.cam.gr3.weather.data.WeatherService;
 import uk.ac.cam.gr3.weather.data.util.HomeData;
 import uk.ac.cam.gr3.weather.data.util.Hour;
+import uk.ac.cam.gr3.weather.gui.util.FXMLController;
 import uk.ac.cam.gr3.weather.gui.util.HSwipePane;
 
 import java.util.ArrayList;
 
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
 
-public class HomeScreenController {
+public class HomeScreenController extends FXMLController {
 
     private HomeData baseData;
-
     private HomeData peakData;
+
+    private Region hourlyBreakDown;
+
+    public HomeScreenController(WeatherService service) {
+        super(service);
+    }
 
     @FXML
     private ToggleGroup altitudeSelect;
@@ -61,7 +65,29 @@ public class HomeScreenController {
     @FXML
     private AnchorPane graphSwipeAnchor;
 
-    private Region hourlyBreakDown;
+    @Override
+    protected void initialize() {
+
+        peakData = service.getPeakData();
+        baseData = service.getBaseData();
+
+        showBase();
+
+        altitudeSelect.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue == null)
+                oldValue.setSelected(true);
+            else {
+                //if press a different button base or peak: display peak or base data accordingly
+                if (newValue == baseButton) showBase();
+                else if (newValue == peakButton) showPeak();
+            }
+        });
+
+        Platform.runLater(() -> {
+            ObjectBinding<Rectangle> clipBinding = Bindings.createObjectBinding(() -> new Rectangle(0, 0, graphSwipeAnchor.getWidth(), graphSwipeAnchor.getHeight()), graphSwipeAnchor.layoutBoundsProperty());
+            graphSwipeAnchor.clipProperty().bind(clipBinding);
+        });
+    }
 
     public void setHSwipePane(HSwipePane pane) {
 
@@ -152,28 +178,5 @@ public class HomeScreenController {
         //set cloud
         cloudCoverage.setText(Integer.toString(homeData.getCloudCoverage()));
 
-    }
-    public void init(WeatherService service) {
-
-        this.peakData = service.getPeakData();
-        this.baseData = service.getBaseData();
-
-        showBase();
-
-        altitudeSelect.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null)
-                oldValue.setSelected(true);
-            else {
-                //if press a different button base or peak: display peak or base data accordingly
-                if (newValue == baseButton) showBase();
-                else if (newValue == peakButton) showPeak();
-            }
-        });
-
-
-        Platform.runLater(() -> {
-            ObjectBinding<Rectangle> clipBinding = Bindings.createObjectBinding(() -> new Rectangle(0, 0, graphSwipeAnchor.getWidth(), graphSwipeAnchor.getHeight()), graphSwipeAnchor.layoutBoundsProperty());
-            graphSwipeAnchor.clipProperty().bind(clipBinding);
-        });
     }
 }

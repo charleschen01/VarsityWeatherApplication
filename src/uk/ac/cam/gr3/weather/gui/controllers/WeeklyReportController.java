@@ -10,11 +10,24 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import uk.ac.cam.gr3.weather.data.util.Day;
 import uk.ac.cam.gr3.weather.data.WeatherService;
+import uk.ac.cam.gr3.weather.gui.util.FXMLController;
 
-public class WeeklyReportController {
+public class WeeklyReportController extends FXMLController {
+
+    public WeeklyReportController(WeatherService service) {
+        super(service);
+    }
 
     @FXML
     private VBox WeekVBox;
+
+    @Override
+    protected void initialize() {
+        //Initiate (and fill) the weekly report page.
+        for(Day d : service.getWeeklyData().getWeek()) {
+            WeekVBox.getChildren().add(dayBand(d.getNameOfDay(),d.getWeatherIcon(),d.getHighestTemperature()+" °C",d.getLowestTemperature()+" °C"));
+        }
+    }
 
     //add to the page a band describing a single day
     private HBox dayBand(String dayName, String icon, String tempHigh, String tempLow) {
@@ -49,12 +62,5 @@ public class WeeklyReportController {
         dayBox.getChildren().addAll(mood, day, tempMax, tempMin);
 
         return dayBox;
-    }
-
-    //Initiate (and fill) the weekly report page. takes as argument the Weather Service
-    public void init(WeatherService ws) {
-        for(Day d: ws.getWeeklyData().getWeek()) {
-            WeekVBox.getChildren().add(dayBand(d.getNameOfDay(),d.getWeatherIcon(),d.getHighestTemperature()+" °C",d.getLowestTemperature()+" °C"));
-        }
     }
 }
