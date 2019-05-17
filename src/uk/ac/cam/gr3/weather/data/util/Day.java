@@ -13,7 +13,7 @@ public class Day {
     private String weatherIcon;
 
     //constructor
-    Day(String date, int lowestTempersture, int highestTempersture, String weatherIcon) {
+    Day(String date, int lowestTemperature, int highestTemperature, String weatherIcon) {
         //Converts the date into the day of the week
         Date now = null;
         try {
@@ -24,8 +24,8 @@ public class Day {
         SimpleDateFormat simpleDateformat = new SimpleDateFormat("E");
         this.nameOfDay = simpleDateformat.format(now);
 
-        this.lowestTemperature = lowestTempersture;
-        this.highestTemperature = highestTempersture;
+        this.lowestTemperature = lowestTemperature;
+        this.highestTemperature = highestTemperature;
         this.weatherIcon = weatherIcon;
     }
 
@@ -59,12 +59,12 @@ public class Day {
         this.nameOfDay = simpleDateformat.format(now);
     }
 
-    void setLowestTemperature(int lowestTempersture) {
-        this.lowestTemperature = lowestTempersture;
+    void setLowestTemperature(int lowestTemperature) {
+        this.lowestTemperature = lowestTemperature;
     }
 
-    void setHighestTemperature(int highestTempersture) {
-        this.highestTemperature = highestTempersture;
+    void setHighestTemperature(int highestTemperature) {
+        this.highestTemperature = highestTemperature;
     }
 
     void setWeatherIcon(String weatherIcon) {

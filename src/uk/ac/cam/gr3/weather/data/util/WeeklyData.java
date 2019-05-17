@@ -16,10 +16,10 @@ public class WeeklyData {
         for (int i = 0; i < numFutureDays; i++) {
             JSONObject dayForecast = weekForecast.getJSONObject(i);
             String date = dayForecast.getString("date");
-            int lowestTempersture = dayForecast.getInt("temp_min_c");
-            int highestTempersture = dayForecast.getInt("temp_max_c");
+            int lowestTemperature = dayForecast.getInt("temp_min_c");
+            int highestTemperature = dayForecast.getInt("temp_max_c");
             String weatherIcon =  "WeatherIcons/" + dayForecast.getJSONArray("Timeframes").getJSONObject(0).getString("wx_icon");
-            Day day = new Day(date, lowestTempersture, highestTempersture, weatherIcon);
+            Day day = new Day(date, lowestTemperature, highestTemperature, weatherIcon);
             week.add(day);
         }
     }
