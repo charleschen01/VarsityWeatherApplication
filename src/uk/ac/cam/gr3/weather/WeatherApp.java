@@ -7,7 +7,6 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import uk.ac.cam.gr3.weather.data.WeatherService;
 import uk.ac.cam.gr3.weather.data.util.DataImplementation;
-import uk.ac.cam.gr3.weather.gui.panes.SnowPane;
 import uk.ac.cam.gr3.weather.gui.util.FXMLController;
 import uk.ac.cam.gr3.weather.gui.controllers.FrameController;
 import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
@@ -36,8 +35,9 @@ public class WeatherApp extends Application {
         FrameController frameController = frameLoader.getController();
 
         // ------------------------ Load Snow Report ------------------------
-        SnowPane snowReport = new SnowPane(service);
+        FXMLLoader snowReportLoader = createLoader("GUI/snowReport.fxml", service);
 
+        Region snowReport = snowReportLoader.load();
 
         // ------------------------ Load Home Screen ------------------------
         FXMLLoader homeScreenLoader = createLoader("GUI/HomeScreen.fxml", service);
@@ -51,8 +51,6 @@ public class WeatherApp extends Application {
 
         // ------------------------ Setup Swipe Container ------------------------
         int width = (int) frame.getPrefWidth();
-
-        snowReport.setPrefWidth(width);
 
         SwipeContainer swipeContainer = new SwipeContainer(snowReport, homeScreen, weeklyReport, width);
 

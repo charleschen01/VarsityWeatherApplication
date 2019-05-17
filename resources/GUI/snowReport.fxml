@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="360.0" spacing="5.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.cam.gr3.weather.gui.controllers.SnowReportController">
+   <padding>
+      <Insets left="10.0" right="10.0" top="10.0" />
+   </padding>
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="/images/snowflake-2.png" />
+         </image>
+      </ImageView>
+      <HBox>
+         <children>
+            <Label text="Snow conditions:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label fx:id="snowConditions" maxHeight="1.7976931348623157E308" text="Icy" wrapText="true">
+         <font>
+            <Font size="40.0" />
+         </font>
+         <padding>
+            <Insets bottom="-5.0" top="-10.0" />
+         </padding>
+      </Label>
+      <HBox>
+         <children>
+            <Label text="Last snowed:">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox>
+         <children>
+            <Label fx:id="lastSnowed" text="15/03/2019">
+               <font>
+                  <Font size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets left="40.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets top="-10.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+      <HBox>
+         <children>
+            <Label fx:id="percentageOpenRuns" styleClass="outline" text="75">
+               <font>
+                  <Font name="System Bold" size="60.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="-15.0" top="-15.0" />
+               </padding>
+            </Label>
+            <VBox>
+               <children>
+                  <HBox alignment="BOTTOM_LEFT">
+                     <children>
+                        <Label text="\%">
+                           <font>
+                              <Font size="35.0" />
+                           </font>
+                           <padding>
+                              <Insets bottom="-10.0" top="-10.0" />
+                           </padding>
+                        </Label>
+                        <Label text="of runs">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" top="-5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Label text="are open">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" top="-5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <HBox alignment="BASELINE_LEFT">
+         <children>
+            <Label text="Top:">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="topSnow" alignment="CENTER_RIGHT" prefWidth="55.0" text="50">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label text="cm of snow">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="BASELINE_LEFT">
+         <children>
+            <Label text="Bottom:">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="bottomSnow" alignment="CENTER_RIGHT" prefWidth="55.0" text="17">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Label>
+            <Label text="cm of snow">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</VBox>
