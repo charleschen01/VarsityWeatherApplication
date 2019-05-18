@@ -12,14 +12,147 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefWidth="360.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController">
+<AnchorPane fx:id="rootAnchor" prefWidth="360.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="-1.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <StackPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="40.0">
+            <VBox alignment="TOP_CENTER">
+               <children>
+                  <ImageView fx:id="weatherMood" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="/images/snowflake-2.png" />
+                     </image>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </ImageView>
+                  <HBox prefHeight="153.0" prefWidth="360.0">
+                     <children>
+                        <Label fx:id="currentTemperature" styleClass="outline" text="2">
+                           <font>
+                              <Font name="System Bold" size="100.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label styleClass="outline" text="℃">
+                           <font>
+                              <Font name="System Bold" size="50.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
+                  </HBox>
+                  <AnchorPane fx:id="hourlyBreakdownAnchor">
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </AnchorPane>
+                  <GridPane>
+                    <columnConstraints>
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
+                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints prefHeight="90.0" vgrow="SOMETIMES" />
+                      <RowConstraints prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints prefHeight="80.0" vgrow="SOMETIMES" />
+                        <RowConstraints prefHeight="40.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <ImageView fitHeight="85.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="/images/wind.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="90.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
+                           <image>
+                              <Image url="/images/watch.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="196.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                           <image>
+                              <Image url="/images/sunset-logo-icon-91959.png" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="windSpeed" alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="50.0" text="8" textAlignment="RIGHT">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="54.0" text="km/h">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="visibility" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="56.0" text="55">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="42.0" prefWidth="37.0" text="km">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <children>
+                              <Label fx:id="sunSetTime" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="90.0" text="7:00">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <ImageView fitHeight="79.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="/images/Clouds-icon.png" />
+                           </image>
+                        </ImageView>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                           <children>
+                              <Label fx:id="cloudCoverage" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="59.0" text="60">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                              </Label>
+                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="28.0" text="\%">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </GridPane>
+               </children>
+               <padding>
+                  <Insets top="40.0" />
+               </padding>
+            </VBox>
+            <HBox fx:id="altitudeBox" alignment="CENTER" maxHeight="-Infinity" prefHeight="40.0" StackPane.alignment="TOP_CENTER">
                <children>
                   <ToggleButton fx:id="peakButton" focusTraversable="false" mnemonicParsing="false" prefWidth="50.0" text="Peak">
                      <toggleGroup>
@@ -38,132 +171,7 @@
                   </ToggleButton>
                </children>
             </HBox>
-            <ImageView fx:id="weatherMood" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="/images/snowflake-2.png" />
-               </image>
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </ImageView>
-            <HBox prefHeight="153.0" prefWidth="360.0">
-               <children>
-                  <Label fx:id="currentTemperature" styleClass="outline" text="2">
-                     <font>
-                        <Font name="System Bold" size="100.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </Label>
-                  <Label styleClass="outline" text="℃">
-                     <font>
-                        <Font name="System Bold" size="50.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <padding>
-                  <Insets left="50.0" />
-               </padding>
-            </HBox>
-            <AnchorPane fx:id="hourlyBreakdownAnchor">
-               <padding>
-                  <Insets bottom="10.0" top="10.0" />
-               </padding>
-            </AnchorPane>
-            <GridPane>
-              <columnConstraints>
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
-                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
-                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints prefHeight="90.0" vgrow="SOMETIMES" />
-                <RowConstraints prefHeight="40.0" vgrow="SOMETIMES" />
-                <RowConstraints prefHeight="80.0" vgrow="SOMETIMES" />
-                  <RowConstraints prefHeight="40.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <ImageView fitHeight="85.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="/images/wind.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="90.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-                     <image>
-                        <Image url="/images/watch.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="196.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-                     <image>
-                        <Image url="/images/sunset-logo-icon-91959.png" />
-                     </image>
-                  </ImageView>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="windSpeed" alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="50.0" text="8" textAlignment="RIGHT">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="45.0" prefWidth="54.0" text="km/h">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="visibility" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="56.0" text="55">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="42.0" prefWidth="37.0" text="km">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                     <children>
-                        <Label fx:id="sunSetTime" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="90.0" text="7:00">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <ImageView fitHeight="79.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-                     <image>
-                        <Image url="/images/Clouds-icon.png" />
-                     </image>
-                  </ImageView>
-                  <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
-                     <children>
-                        <Label fx:id="cloudCoverage" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="59.0" text="60">
-                           <font>
-                              <Font size="25.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" prefHeight="57.0" prefWidth="28.0" text="\%">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-               </children>
-            </GridPane>
          </children>
-      </VBox>
+      </StackPane>
    </children>
 </AnchorPane>

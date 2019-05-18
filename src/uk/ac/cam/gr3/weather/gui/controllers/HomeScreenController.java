@@ -34,13 +34,16 @@ public class HomeScreenController extends FXMLController {
     }
 
     @FXML
+    private AnchorPane rootAnchor;
+
+    @FXML
+    private HBox altitudeBox;
+
+    @FXML
     private ToggleGroup altitudeSelect;
 
     @FXML
-    private ToggleButton peakButton;
-
-    @FXML
-    private ToggleButton baseButton;
+    private ToggleButton peakButton, baseButton;
 
     @FXML
     private ImageView weatherMood;
@@ -67,6 +70,9 @@ public class HomeScreenController extends FXMLController {
     protected void initialize() {
 
         showBase();
+
+        // Negate the effect of scrolling on the altitude selection buttons.
+        altitudeBox.translateYProperty().bind(rootAnchor.translateYProperty().negate());
 
         altitudeSelect.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null)
