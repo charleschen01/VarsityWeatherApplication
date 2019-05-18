@@ -1,16 +1,19 @@
 package uk.ac.cam.gr3.weather.gui.controllers;
 
-import javafx.application.Platform;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.ObjectBinding;
+import javafx.beans.InvalidationListener;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
+import javafx.scene.Group;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.CycleMethod;
+import javafx.scene.paint.LinearGradient;
+import javafx.scene.paint.Stop;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import uk.ac.cam.gr3.weather.Util;
@@ -25,9 +28,6 @@ import java.util.ArrayList;
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
 
 public class HomeScreenController extends FXMLController {
-
-    private HomeData baseData;
-    private HomeData peakData;
 
     private Region hourlyBreakDown;
 
@@ -63,13 +63,10 @@ public class HomeScreenController extends FXMLController {
     private Label cloudCoverage;
 
     @FXML
-    private AnchorPane graphSwipeAnchor;
+    private AnchorPane hourlyBreakdownAnchor;
 
     @Override
     protected void initialize() {
-
-        peakData = service.getPeakData();
-        baseData = service.getBaseData();
 
         showBase();
 
@@ -83,26 +80,49 @@ public class HomeScreenController extends FXMLController {
             }
         });
 
-        Platform.runLater(() -> {
-            ObjectBinding<Rectangle> clipBinding = Bindings.createObjectBinding(() -> new Rectangle(0, 0, graphSwipeAnchor.getWidth(), graphSwipeAnchor.getHeight()), graphSwipeAnchor.layoutBoundsProperty());
-            graphSwipeAnchor.clipProperty().bind(clipBinding);
-        });
+        InvalidationListener changeClip = it -> {
+
+            double width = hourlyBreakdownAnchor.getWidth();
+            double height = hourlyBreakdownAnchor.getHeight();
+
+            int fadeWidth = 40;
+
+            Rectangle leftFade = new Rectangle(0, 0, fadeWidth, height);
+            Rectangle centre = new Rectangle(fadeWidth, 0,width - 2 * fadeWidth, height);
+            Rectangle rightFade = new Rectangle(width - fadeWidth, 0, fadeWidth, height);
+
+            leftFade.setManaged(false);
+            centre.setManaged(false);
+            rightFade.setManaged(false);
+
+            centre.setFill(Color.BLACK);
+
+            leftFade.setFill(new LinearGradient(0, 0, fadeWidth, 0, false, CycleMethod.NO_CYCLE, new Stop(0, Color.TRANSPARENT), new Stop(1, Color.BLACK)));
+            rightFade.setFill(new LinearGradient(width - fadeWidth, 0, width, 0, false, CycleMethod.NO_CYCLE, new Stop(0, Color.BLACK), new Stop(1, Color.TRANSPARENT)));
+
+            Group group = new Group(leftFade, centre, rightFade);
+
+            hourlyBreakdownAnchor.setClip(group);
+        };
+
+        hourlyBreakdownAnchor.widthProperty().addListener(changeClip);
+        hourlyBreakdownAnchor.heightProperty().addListener(changeClip);
     }
 
-    public void setHSwipePane(HSwipePane pane) {
+    private void setHSwipePane(HSwipePane pane) {
 
-        graphSwipeAnchor.getChildren().setAll(pane);
+        hourlyBreakdownAnchor.getChildren().setAll(pane);
 
         Util.fitToAnchorPane(pane);
     }
 
-    public void setWeatherMood(String url) {
+    private void setWeatherMood(String url) {
         weatherMood.setImage(new Image("/WeatherIcons/" + url));
         weatherMood.setPreserveRatio(true);
         weatherMood.setFitWidth(300);
     }
 
-    public void setHourlyBreakDown(ArrayList<Hour> timeline) { //create a pane to pass into HSwipePane
+    private void setHourlyBreakDown(ArrayList<Hour> timeline) { //create a pane to pass into HSwipePane
 
         int i = 0;
 
@@ -122,7 +142,7 @@ public class HomeScreenController extends FXMLController {
             mood.setPreserveRatio(true);
 
             //create temperature label
-            Label temp = new Label(Integer.toString(hour.getTemperature()) + "℃");
+            Label temp = new Label(hour.getTemperature() + "℃");
             temp.setFont(Font.font(18));
             temp.setPrefHeight(30);
 
@@ -142,18 +162,20 @@ public class HomeScreenController extends FXMLController {
     }
 
     //show weather data at base
-    public void showBase() {
-        show(baseData);
+    @FXML
+    private void showBase() {
+        show(service.getBaseData());
     }
 
     //show weather data at peak
-    public void showPeak() {
-        show(peakData);
+    @FXML
+    private void showPeak() {
+        show(service.getPeakData());
     }
 
 
     //show a particular type of data
-    public void show(HomeData homeData) {
+    private void show(HomeData homeData) {
 
         //set weatherMood
         setWeatherMood(homeData.getWeatherIcon());

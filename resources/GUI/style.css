@@ -55,6 +55,12 @@
     -fx-background-radius: 0 5px 5px 0;
 }
 
+#hourlyBreakdownAnchor {
+
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+}
+
 .label.outline .text {
     -fx-fill: transparent;
     -fx-stroke: -fx-text-base-color;
