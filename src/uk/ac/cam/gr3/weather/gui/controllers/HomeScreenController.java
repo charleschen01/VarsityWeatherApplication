@@ -85,26 +85,35 @@ public class HomeScreenController extends FXMLController {
             double width = hourlyBreakdownAnchor.getWidth();
             double height = hourlyBreakdownAnchor.getHeight();
 
+            // The width over which fading will be applied.
             int fadeWidth = 40;
 
+            // This is separating the area into three parts; left and right will be faded while centre will not.
             Rectangle leftFade = new Rectangle(0, 0, fadeWidth, height);
             Rectangle centre = new Rectangle(fadeWidth, 0,width - 2 * fadeWidth, height);
             Rectangle rightFade = new Rectangle(width - fadeWidth, 0, fadeWidth, height);
 
+            // Lets JavaFX know it shouldn't try to do layout with those.
             leftFade.setManaged(false);
             centre.setManaged(false);
             rightFade.setManaged(false);
 
+            // The fill paint is used to determine transparency of the components.
+            // Centre is just plain, flat colour.
             centre.setFill(Color.BLACK);
 
+            // Left and right have a linear gradient that goes from black to transparent.
             leftFade.setFill(new LinearGradient(0, 0, fadeWidth, 0, false, CycleMethod.NO_CYCLE, new Stop(0, Color.TRANSPARENT), new Stop(1, Color.BLACK)));
             rightFade.setFill(new LinearGradient(width - fadeWidth, 0, width, 0, false, CycleMethod.NO_CYCLE, new Stop(0, Color.BLACK), new Stop(1, Color.TRANSPARENT)));
 
             Group group = new Group(leftFade, centre, rightFade);
 
+            // This applies the rectangles and fading to the component.
             hourlyBreakdownAnchor.setClip(group);
         };
 
+        // Update the clip when the width or height change.
+        // This also captures when they are first set, which is what we're interested in.
         hourlyBreakdownAnchor.widthProperty().addListener(changeClip);
         hourlyBreakdownAnchor.heightProperty().addListener(changeClip);
     }
