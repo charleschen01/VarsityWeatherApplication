@@ -68,19 +68,32 @@ public class WeatherApp extends Application {
         primaryStage.show();
     }
 
+    /**
+     * <p>Attempts to create an FXMLLoader for the fxml file in system resources with path 'location'.
+     * This assumes that the associated controller class is a subclass of FXMLController.
+     *
+     * <p>It also assumes the controller class has a public constructor that takes a WeatherService, and uses that to
+     * inject the WeatherService into the controller.
+     */
     private static FXMLLoader createLoader(String location, WeatherService service) {
 
         FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(location));
         loader.setControllerFactory(param -> {
             if (FXMLController.class.isAssignableFrom(param)) {
+                // If the requested controller class is a subclass of FXMLController
 
                 try {
+                    // Get the public constructor taking a WeatherService as input.
                     Constructor<?> constructor = param.getDeclaredConstructor(WeatherService.class);
 
+                    // Create an instance.
                     return constructor.newInstance(service);
                 } catch (NoSuchMethodException | InstantiationException | IllegalAccessException e) {
+                    // Either the desired constructor doesn't exist, the controller class is abstract
+                    // or the constructor isn't public.
                     throw new AssertionError("The controller does not implement the expected constructor", e);
                 } catch (InvocationTargetException e) {
+                    // The constructor threw an exception.
                     throw new RuntimeException("Exception in controller constructor", e);
                 }
             } else throw new IllegalArgumentException("The requested controller '" + param + "' is not an instance of FXMLController.class");
