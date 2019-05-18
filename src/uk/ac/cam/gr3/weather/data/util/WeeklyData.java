@@ -18,7 +18,7 @@ public class WeeklyData {
             String date = dayForecast.getString("date");
             int lowestTemperature = dayForecast.getInt("temp_min_c");
             int highestTemperature = dayForecast.getInt("temp_max_c");
-            String weatherIcon =  "WeatherIcons/" + dayForecast.getJSONArray("Timeframes").getJSONObject(0).getString("wx_icon");
+            String weatherIcon =  dayForecast.getJSONArray("Timeframes").getJSONObject(0).getString("wx_icon");
             Day day = new Day(date, lowestTemperature, highestTemperature, weatherIcon);
             week.add(day);
         }
@@ -37,7 +37,7 @@ public class WeeklyData {
             day.setNameOfDay(dayForecast.getString("date"));
             day.setLowestTemperature(dayForecast.getInt("temp_min_c"));
             day.setHighestTemperature(dayForecast.getInt("temp_max_c"));
-            day.setWeatherIcon("WeatherIcons/" + dayForecast.getJSONArray("Timeframes").getJSONObject(0).getString("wx_icon"));
+            day.setWeatherIcon(dayForecast.getJSONArray("Timeframes").getJSONObject(0).getString("wx_icon"));
 
             index++;
         }

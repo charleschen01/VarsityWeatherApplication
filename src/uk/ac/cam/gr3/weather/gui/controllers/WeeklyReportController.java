@@ -39,7 +39,7 @@ public class WeeklyReportController extends FXMLController {
 
         final double IMAGE_WIDTH = 80.0;
 
-        Image moodImage = new Image(icon);
+        Image moodImage = new Image("/WeatherIcons/" + icon);
         ImageView mood = new ImageView(moodImage);
         //<ImageView fitHeight="50.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
         mood.setFitHeight(50.0);
