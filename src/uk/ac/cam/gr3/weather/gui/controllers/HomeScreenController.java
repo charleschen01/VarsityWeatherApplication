@@ -1,5 +1,6 @@
 package uk.ac.cam.gr3.weather.gui.controllers;
 
+import javafx.application.Platform;
 import javafx.beans.InvalidationListener;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
@@ -27,8 +28,6 @@ import java.util.ArrayList;
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
 
 public class HomeScreenController extends FXMLController {
-
-    private Region hourlyBreakDown;
 
     public HomeScreenController(WeatherService service) {
         super(service);
@@ -71,7 +70,7 @@ public class HomeScreenController extends FXMLController {
 
         altitudeSelect.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue == null)
-                oldValue.setSelected(true);
+                oldValue.setSelected(true); // Prevents the user from not having a selected toggle.
             else {
                 //if press a different button base or peak: display peak or base data accordingly
                 if (newValue == baseButton) showBase();
@@ -130,7 +129,7 @@ public class HomeScreenController extends FXMLController {
         weatherMood.setFitWidth(300);
     }
 
-    private void setHourlyBreakDown(ArrayList<Hour> timeline) { //create a pane to pass into HSwipePane
+    private GridPane createHourlyBreakdown(ArrayList<Hour> timeline) { //create a pane to pass into HSwipePane
 
         int i = 0;
 
@@ -165,18 +164,15 @@ public class HomeScreenController extends FXMLController {
             table.add(time, i-1, 2);
         }
 
-        hourlyBreakDown = table;
-
+        return table;
     }
 
     //show weather data at base
-    @FXML
     private void showBase() {
         show(service.getBaseData());
     }
 
     //show weather data at peak
-    @FXML
     private void showPeak() {
         show(service.getPeakData());
     }
@@ -191,10 +187,10 @@ public class HomeScreenController extends FXMLController {
         //set temperature
         currentTemperature.setText(Integer.toString(homeData.getCurrentTemperature()));
 
-        //set hourly BreakDown, create HSwipePane
-        setHourlyBreakDown(homeData.getTimeline());
-        HSwipePane HBD = new HSwipePane(hourlyBreakDown);
-        setHSwipePane(HBD);
+        //create hourly breakdown, create HSwipePane
+        Region hourlyBreakdown = createHourlyBreakdown(homeData.getTimeline());
+        HSwipePane hourlyBreakdownSwipe = new HSwipePane(hourlyBreakdown);
+        setHSwipePane(hourlyBreakdownSwipe);
 
         //set wind
         windSpeed.setText(Integer.toString(homeData.getWindSpeed()));
