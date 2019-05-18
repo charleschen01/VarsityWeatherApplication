@@ -10,6 +10,7 @@ The code is released as-is.
 
 ## Used libraries:
 - The project uses the JavaFX library to implement the GUI
+- It also uses the [JSON-java](https://github.com/stleary/JSON-java) (also known as org.json) library for parsing JSON response strings from the API.
 - Otherwise, only the standard Java libraries were used
 
 ## Resources:
