@@ -210,10 +210,12 @@ public class HomeScreenController extends FXMLController {
 
         //give an alert if the weather is dangerous
         if(DangerousWeather.isDangerous(homeData.getWeatherCondition())) {
-            String warningText = String.format("The weather may be dangerous. Current conditions are %s.", homeData.getWeatherCondition());
-            Alert weatherAlert = new Alert(Alert.AlertType.WARNING, warningText, ButtonType.OK);
-            weatherAlert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
-            weatherAlert.showAndWait();
+            Platform.runLater(() -> {
+                String warningText = String.format("The weather may be dangerous. Current conditions are %s.", homeData.getWeatherCondition());
+                Alert weatherAlert = new Alert(Alert.AlertType.WARNING, warningText, ButtonType.OK);
+                weatherAlert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                weatherAlert.showAndWait();
+            });
         }
 
     }
