@@ -37,13 +37,18 @@ public class WeeklyReportController extends FXMLController {
         dayBox.setPrefHeight(50.0);
         dayBox.setPrefWidth(360.0);
 
+        final double IMAGE_WIDTH = 80.0;
+
         Image moodImage = new Image(icon);
         ImageView mood = new ImageView(moodImage);
         //<ImageView fitHeight="50.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" />
         mood.setFitHeight(50.0);
-        mood.setFitWidth(80.0);
+        mood.setFitWidth(IMAGE_WIDTH);
         mood.setPickOnBounds(true);
         mood.setPreserveRatio(true);
+        HBox moodBox = new HBox();
+        moodBox.setMinWidth(IMAGE_WIDTH);
+        moodBox.getChildren().addAll(mood);
         Label day = new Label(dayName);
         //<Label prefHeight="18.0" prefWidth="149.0" text="Tuesday" />
         day.setPrefHeight(18.0);
@@ -59,7 +64,7 @@ public class WeeklyReportController extends FXMLController {
         tempMin.setPrefWidth(43.0);
         tempMin.setTextFill(Color.web("#0000ff", 1.0));
 
-        dayBox.getChildren().addAll(mood, day, tempMax, tempMin);
+        dayBox.getChildren().addAll(moodBox, day, tempMax, tempMin);
 
         return dayBox;
     }
