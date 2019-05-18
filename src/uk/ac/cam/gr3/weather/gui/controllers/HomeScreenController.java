@@ -4,9 +4,7 @@ import javafx.beans.InvalidationListener;
 import javafx.fxml.FXML;
 import javafx.geometry.HPos;
 import javafx.scene.Group;
-import javafx.scene.control.Label;
-import javafx.scene.control.ToggleButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -18,6 +16,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import uk.ac.cam.gr3.weather.Util;
 import uk.ac.cam.gr3.weather.data.WeatherService;
+import uk.ac.cam.gr3.weather.data.util.DangerousWeather;
 import uk.ac.cam.gr3.weather.data.util.HomeData;
 import uk.ac.cam.gr3.weather.data.util.Hour;
 import uk.ac.cam.gr3.weather.gui.util.FXMLController;
@@ -208,6 +207,14 @@ public class HomeScreenController extends FXMLController {
 
         //set cloud
         cloudCoverage.setText(Integer.toString(homeData.getCloudCoverage()));
+
+        //give an alert if the weather is dangerous
+        if(DangerousWeather.isDangerous(homeData.getWeatherCondition())) {
+            String warningText = String.format("The weather may be dangerous. Current conditions are %s.", homeData.getWeatherCondition());
+            Alert weatherAlert = new Alert(Alert.AlertType.WARNING, warningText, ButtonType.OK);
+            weatherAlert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            weatherAlert.showAndWait();
+        }
 
     }
 }
