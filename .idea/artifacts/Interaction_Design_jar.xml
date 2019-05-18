@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Interaction Design:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Interaction_Design_jar</output-path>
+    <root id="archive" name="Interaction Design.jar">
+      <element id="module-output" name="Interaction Design" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/json/json/20180813/json-20180813.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
