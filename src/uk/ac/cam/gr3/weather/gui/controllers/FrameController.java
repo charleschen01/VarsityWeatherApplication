@@ -1,7 +1,6 @@
 package uk.ac.cam.gr3.weather.gui.controllers;
 
-import javafx.animation.SequentialTransition;
-import javafx.animation.Transition;
+import javafx.animation.*;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -10,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.SVGPath;
 import javafx.util.Duration;
 import uk.ac.cam.gr3.weather.Util;
 import uk.ac.cam.gr3.weather.data.WeatherService;
@@ -27,6 +27,8 @@ public class FrameController extends FXMLController {
 
     private Transition menuToggleTransition;
 
+    private RotateTransition refreshSpinAnimation;
+
     public FrameController(WeatherService service) {
         super(service);
     }
@@ -41,7 +43,7 @@ public class FrameController extends FXMLController {
     private Pane menuBar1, menuBar2, menuBar3;
 
     @FXML
-    private Button snow, home, weekly;
+    private SVGPath refreshSpinner;
 
     @FXML
     private Pane bottomNavigationSelection;
@@ -83,6 +85,12 @@ public class FrameController extends FXMLController {
 
         // TODO wrap with a parallel transition to pull the menu in / out of the screen
         menuToggleTransition = new SequentialTransition(translate, rotate);
+
+        refreshSpinAnimation = new RotateTransition(Duration.millis(500), refreshSpinner);
+        refreshSpinAnimation.setByAngle(360);
+
+        refreshSpinAnimation.setAutoReverse(true);
+        refreshSpinAnimation.setInterpolator(Interpolator.LINEAR);
     }
 
     public void setSwipeContainer(SwipeContainer container) {
@@ -124,5 +132,23 @@ public class FrameController extends FXMLController {
         menuToggleTransition.play();
 
         isShowingMenu.set(!isShowing);
+    }
+
+    @FXML
+    private void refresh() {
+
+        refreshSpinAnimation.setOnFinished(event -> refreshSpinAnimation.play());
+        refreshSpinAnimation.playFromStart();
+
+        new Thread(() -> {
+            try {
+                Thread.sleep(3000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
+            // TODO trigger this when the service is done refreshing
+            refreshSpinAnimation.setOnFinished(null);
+        }).start();
     }
 }
