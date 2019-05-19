@@ -40,7 +40,7 @@ public class WeatherApp extends Application {
         Region snowReport = snowReportLoader.load();
 
         // ------------------------ Load Home Screen ------------------------
-        FXMLLoader homeScreenLoader = createLoader("GUI/HomeScreen.fxml", service);
+        FXMLLoader homeScreenLoader = createLoader("GUI/homeScreen.fxml", service);
 
         Region homeScreen = homeScreenLoader.load();
 
