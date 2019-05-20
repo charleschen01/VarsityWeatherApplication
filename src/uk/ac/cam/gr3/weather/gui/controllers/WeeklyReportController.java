@@ -54,14 +54,17 @@ public class WeeklyReportController extends FXMLController {
         day.setPrefHeight(18.0);
         day.setPrefWidth(149.0);
         Label tempMax = new Label(tempHigh);
+        javafx.scene.text.Font tempFont = new javafx.scene.text.Font("Arial",20);
         //<Label prefHeight="18.0" prefWidth="43.0" text="5 °C">
         tempMax.setPrefHeight(18.0);
-        tempMax.setPrefWidth(43.0);
+        tempMax.setPrefWidth(80.0);
+        tempMax.setFont(tempFont);
         tempMax.setTextFill(Color.web("#ff0000", 1.0));
         Label tempMin = new Label(tempLow);
         //<Label prefHeight="18.0" prefWidth="43.0" text="5 °C">
         tempMin.setPrefHeight(18.0);
-        tempMin.setPrefWidth(43.0);
+        tempMin.setPrefWidth(80.0);
+        tempMin.setFont(tempFont);
         tempMin.setTextFill(Color.web("#0000ff", 1.0));
 
         dayBox.getChildren().addAll(moodBox, day, tempMax, tempMin);
