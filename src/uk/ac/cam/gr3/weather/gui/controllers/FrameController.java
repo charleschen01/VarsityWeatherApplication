@@ -1,11 +1,11 @@
 package uk.ac.cam.gr3.weather.gui.controllers;
 
 import javafx.animation.*;
-import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
@@ -141,16 +141,28 @@ public class FrameController extends FXMLController {
         refreshSpinAnimation.setOnFinished(event -> refreshSpinAnimation.play());
         refreshSpinAnimation.playFromStart();
 
-        new Thread(() -> {
-            service.refresh();
-            Platform.runLater(this::update);
+        Task<Void> refresh = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                service.refresh();
+                return null;
+            }
+        };
 
+        refresh.setOnSucceeded(event -> refreshSpinAnimation.setOnFinished(null));
+        refresh.setOnFailed(event -> {
             refreshSpinAnimation.setOnFinished(null);
-        }).start();
+            Throwable exception = event.getSource().getException();
+            System.err.println("Exception while refreshing");
+            exception.printStackTrace();
+            // TODO alert user?
+        });
+
+        new Thread(refresh).start();
     }
 
     @Override
     public void update() {
-        container.updateDisplay();
+
     }
 }
