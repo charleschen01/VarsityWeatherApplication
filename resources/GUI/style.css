@@ -63,5 +63,6 @@
 .label.outline .text {
     -fx-fill: transparent;
     -fx-stroke: -fx-text-base-color;
+    -fx-stroke-type: outside;
     -fx-stroke-width: 3px;
 }

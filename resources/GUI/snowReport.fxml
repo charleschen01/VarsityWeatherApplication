@@ -61,7 +61,7 @@
       </HBox>
       <HBox>
          <children>
-            <Label fx:id="percentageOpenRuns" styleClass="outline" text="75">
+            <Label fx:id="percentageOpenRuns" cache="true" styleClass="outline" text="75">
                <font>
                   <Font name="System Bold" size="60.0" />
                </font>
