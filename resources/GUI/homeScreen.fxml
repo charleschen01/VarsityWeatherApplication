@@ -81,50 +81,51 @@
                            <image>
                               <Image url="/images/wind.png" />
                            </image>
+                           <GridPane.margin>
+                              <Insets top="20.0" />
+                           </GridPane.margin>
                         </ImageView>
                         <ImageView fitHeight="90.0" fitWidth="73.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
                            <image>
                               <Image url="/images/watch.png" />
                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="196.0" fitWidth="156.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-                           <image>
-                              <Image url="/images/sunset-logo-icon-91959.png" />
-                           </image>
+                           <GridPane.margin>
+                              <Insets top="20.0" />
+                           </GridPane.margin>
                         </ImageView>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="windSpeed" alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="50.0" text="8" textAlignment="RIGHT">
                                  <font>
-                                    <Font size="25.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" prefHeight="45.0" prefWidth="54.0" text="km/h">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Label fx:id="visibility" alignment="CENTER_RIGHT" prefHeight="42.0" prefWidth="56.0" text="55">
+                              <Label fx:id="visibility" alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="56.0" text="55">
                                  <font>
-                                    <Font size="25.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="42.0" prefWidth="37.0" text="km">
+                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="34.0" text="km">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
-                              <Label fx:id="sunSetTime" alignment="CENTER_RIGHT" prefHeight="41.0" prefWidth="90.0" text="7:00">
+                              <Label fx:id="sunSetTime" alignment="CENTER" prefHeight="41.0" prefWidth="134.0" text="7:00">
                                  <font>
-                                    <Font size="25.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
                            </children>
@@ -138,16 +139,35 @@
                            <children>
                               <Label fx:id="cloudCoverage" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="59.0" text="60">
                                  <font>
-                                    <Font size="25.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" prefHeight="57.0" prefWidth="28.0" text="\%">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
+                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <ImageView fitHeight="89.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                           <image>
+                              <Image url="/images/Sunset-512.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets top="10.0" />
+                           </GridPane.margin>
+                        </ImageView>
+                        <ImageView fitHeight="90.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="/images/Sunrise-512.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="sunRiseTime" alignment="CENTER" prefHeight="41.0" prefWidth="134.0" text="7:00" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
                      </children>
                   </GridPane>
                </children>

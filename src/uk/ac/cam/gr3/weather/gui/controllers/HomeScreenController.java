@@ -61,6 +61,9 @@ public class HomeScreenController extends FXMLController {
     private Label sunSetTime;
 
     @FXML
+    private Label sunRiseTime;
+
+    @FXML
     private Label cloudCoverage;
 
     @FXML
@@ -207,6 +210,9 @@ public class HomeScreenController extends FXMLController {
 
         //set sunset time
         sunSetTime.setText(homeData.getSunset());
+
+        //set sunrise time
+        sunRiseTime.setText(homeData.getSunrise());
 
         //set cloud
         cloudCoverage.setText(Integer.toString(homeData.getCloudCoverage()));
