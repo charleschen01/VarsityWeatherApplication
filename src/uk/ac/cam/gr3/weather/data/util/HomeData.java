@@ -31,15 +31,50 @@ public class HomeData {
     private int freshSnow;
     private int humidity;
 
-    private final ZoneId TIME_ZONE = ZoneId.of("Europe/Paris");
+    private static final ZoneId TIME_ZONE = ZoneId.of("Europe/Paris");
 
     //location needs to be "upper" or "base"
     HomeData(String location, JSONObject sunData, JSONArray forecastData) {
         int numFutureHours = 7;
 
+        //This is the 3-hourly weather timeline
+        timeline = new ArrayList<>();
+        String hour;
+        int temperature;
+        String weatherIconForecast;
+
+        Hour next = null;
+        int currentTimeIndex = -1;
+
+        for (int index = 0; index < numFutureHours; index++){
+            JSONObject forecastTimeFrame = forecastData.getJSONObject(index);
+            JSONObject currentLocationForecastTimeFrame = forecastTimeFrame.getJSONObject(location);
+            hour = forecastTimeFrame.getString("time");
+            if(currentTimeIndex==-1) {
+                numFutureHours++;
+                List<Integer> date = Arrays.stream(forecastTimeFrame.getString("date").split("/")).map(Integer::parseInt).collect(Collectors.toList());
+                List<Integer> time = Arrays.stream(hour.split(":")).map(Integer::parseInt).collect(Collectors.toList());
+                Instant now = Instant.now(Clock.systemUTC().withZone(TIME_ZONE));
+                LocalDateTime forecastHour = LocalDateTime.of(date.get(2), date.get(1), date.get(0), time.get(0), time.get(1));
+                Instant forecastHourZoned = forecastHour.atZone(TIME_ZONE).toInstant();
+                if(forecastHourZoned.isAfter(now)) {
+                    currentTimeIndex = Math.max(index - 1, 0);
+                    if(next != null) {
+                        timeline.add(next);
+                    }
+                }
+            }
+            temperature = currentLocationForecastTimeFrame.getInt("temp_c");
+            weatherIconForecast = currentLocationForecastTimeFrame.getString("wx_icon");
+            next = new Hour(hour, temperature, weatherIconForecast);
+            if(currentTimeIndex>=0) {
+                timeline.add(next);
+            }
+        }
+
         //data for the current timestamp
-        JSONObject locationSpecificData = forecastData.getJSONObject(0).getJSONObject(location);
-        JSONObject nonLocationSpecificData = forecastData.getJSONObject(0);
+        JSONObject locationSpecificData = forecastData.getJSONObject(currentTimeIndex).getJSONObject(location);
+        JSONObject nonLocationSpecificData = forecastData.getJSONObject(currentTimeIndex);
 
 
         sunrise = sunData.getString("sunrise_time");
@@ -57,41 +92,6 @@ public class HomeData {
         humidity = nonLocationSpecificData.getInt("hum_pct");
         freshSnow = locationSpecificData.getInt("freshsnow_cm");
         windDirection = locationSpecificData.getString("winddir_compass");
-
-        //This is the 3-hourly weather timeline
-        timeline = new ArrayList<>();
-        String hour;
-        int temperature;
-        String weatherIcon;
-
-        Hour next = null;
-        boolean timePassed = false;
-
-        for (int index = 0; index < numFutureHours; index++){
-            JSONObject forecastTimeFrame = forecastData.getJSONObject(index);
-            JSONObject currentLocationForecastTimeFrame = forecastTimeFrame.getJSONObject(location);
-            hour = forecastTimeFrame.getString("time");
-            if(!timePassed) {
-                numFutureHours++;
-                List<Integer> date = Arrays.stream(forecastTimeFrame.getString("date").split("/")).map(Integer::parseInt).collect(Collectors.toList());
-                List<Integer> time = Arrays.stream(hour.split(":")).map(Integer::parseInt).collect(Collectors.toList());
-                Instant now = Instant.now(Clock.systemUTC().withZone(TIME_ZONE));
-                LocalDateTime forecastHour = LocalDateTime.of(date.get(2), date.get(1), date.get(0), time.get(0), time.get(1));
-                Instant forecastHourZoned = forecastHour.atZone(TIME_ZONE).toInstant();
-                if(forecastHourZoned.isAfter(now)) {
-                    timePassed = true;
-                    if(next != null) {
-                        timeline.add(next);
-                    }
-                }
-            }
-            temperature = currentLocationForecastTimeFrame.getInt("temp_c");
-            weatherIcon = currentLocationForecastTimeFrame.getString("wx_icon");
-            next = new Hour(hour, temperature, weatherIcon);
-            if(timePassed) {
-                timeline.add(next);
-            }
-        }
     }
 
     //getters
