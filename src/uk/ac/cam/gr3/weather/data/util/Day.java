@@ -21,7 +21,7 @@ public class Day {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        SimpleDateFormat simpleDateformat = new SimpleDateFormat("E");
+        SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE");
         this.nameOfDay = simpleDateformat.format(now);
 
         this.lowestTemperature = lowestTemperature;
@@ -55,7 +55,7 @@ public class Day {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        SimpleDateFormat simpleDateformat = new SimpleDateFormat("E");
+        SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE");
         this.nameOfDay = simpleDateformat.format(now);
     }
 

@@ -129,13 +129,13 @@ public class HomeData {
         this.sunrise = sunrise;
     }
 
-    void setTimeline(JSONArray data) {
+    void setTimeline(JSONArray data, String location) {
         int index = 0;
         for (Hour hour : timeline){
             JSONObject timestampData = data.getJSONObject(index);
             hour.setHour(timestampData.getString("time"));
-            hour.setTemperature(timestampData.getInt("temp_c"));
-            hour.setWeatherIcon(timestampData.getString("wx_icon"));
+            hour.setTemperature(timestampData.getJSONObject(location).getInt("temp_c"));
+            hour.setWeatherIcon(timestampData.getJSONObject(location).getString("wx_icon"));
             index ++;
         }
     }

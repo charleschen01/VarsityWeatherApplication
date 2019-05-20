@@ -73,8 +73,7 @@ public class DataImplementation implements WeatherService {
         peakData.setCloudCoverage(nonLocationSpecificData.getInt("highcloud_pct"));
         peakData.setVisibility(nonLocationSpecificData.getInt("vis_km"));
 
-        // TODO: this call isn't working
-        peakData.setTimeline(data.getJSONArray("forecast"));
+        peakData.setTimeline(data.getJSONArray("forecast"), "upper");
 
         peakData.setSunrise(generalData.getJSONArray("Days").getJSONObject(0).getString("sunrise_time"));
 
@@ -89,8 +88,7 @@ public class DataImplementation implements WeatherService {
         baseData.setCloudCoverage(nonLocationSpecificData.getInt("lowcloud_pct"));
         baseData.setVisibility(nonLocationSpecificData.getInt("vis_km"));
 
-        // TODO: this call isn't working
-        baseData.setTimeline(data.getJSONArray("forecast"));
+        baseData.setTimeline(data.getJSONArray("forecast"), "base");
 
         baseData.setSunrise(generalData.getJSONArray("Days").getJSONObject(0).getString("sunrise_time"));
 
