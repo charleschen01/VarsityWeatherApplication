@@ -97,12 +97,12 @@
                            <children>
                               <Label fx:id="windSpeed" alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="50.0" text="8" textAlignment="RIGHT">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" prefHeight="45.0" prefWidth="54.0" text="km/h">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                            </children>
@@ -111,21 +111,21 @@
                            <children>
                               <Label fx:id="visibility" alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="56.0" text="55">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" prefHeight="45.0" prefWidth="34.0" text="km">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                            </children>
                         </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
-                              <Label fx:id="sunSetTime" alignment="CENTER" prefHeight="41.0" prefWidth="134.0" text="7:00">
+                              <Label fx:id="sunSetTime" alignment="CENTER" prefHeight="48.0" prefWidth="120.0" text="7:00">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                            </children>
@@ -139,12 +139,12 @@
                            <children>
                               <Label fx:id="cloudCoverage" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="59.0" text="60">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                               <Label alignment="CENTER" prefHeight="57.0" prefWidth="28.0" text="\%">
                                  <font>
-                                    <Font size="22.0" />
+                                    <Font size="20.0" />
                                  </font>
                               </Label>
                            </children>
@@ -165,7 +165,7 @@
                         </ImageView>
                         <Label fx:id="sunRiseTime" alignment="CENTER" prefHeight="41.0" prefWidth="134.0" text="7:00" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
-                              <Font size="22.0" />
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
