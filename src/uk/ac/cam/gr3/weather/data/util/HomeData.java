@@ -2,7 +2,15 @@ package uk.ac.cam.gr3.weather.data.util;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.time.Clock;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 //This provides data for the home screen
 public class HomeData {
@@ -22,6 +30,8 @@ public class HomeData {
     private String windDirection;
     private int freshSnow;
     private int humidity;
+
+    private final ZoneId TIME_ZONE = ZoneId.of("Europe/Paris");
 
     //location needs to be "upper" or "base"
     HomeData(String location, JSONObject sunData, JSONArray forecastData) {
@@ -53,17 +63,34 @@ public class HomeData {
         String hour;
         int temperature;
         String weatherIcon;
-        int index = 0;
 
-        while (index <= numFutureHours){
+        Hour next = null;
+        boolean timePassed = false;
+
+        for (int index = 0; index < numFutureHours; index++){
             JSONObject forecastTimeFrame = forecastData.getJSONObject(index);
             JSONObject currentLocationForecastTimeFrame = forecastTimeFrame.getJSONObject(location);
             hour = forecastTimeFrame.getString("time");
+            if(!timePassed) {
+                numFutureHours++;
+                List<Integer> date = Arrays.stream(forecastTimeFrame.getString("date").split("/")).map(Integer::parseInt).collect(Collectors.toList());
+                List<Integer> time = Arrays.stream(hour.split(":")).map(Integer::parseInt).collect(Collectors.toList());
+                Instant now = Instant.now(Clock.systemUTC().withZone(TIME_ZONE));
+                LocalDateTime forecastHour = LocalDateTime.of(date.get(2), date.get(1), date.get(0), time.get(0), time.get(1));
+                Instant forecastHourZoned = forecastHour.atZone(TIME_ZONE).toInstant();
+                if(forecastHourZoned.isAfter(now)) {
+                    timePassed = true;
+                    if(next != null) {
+                        timeline.add(next);
+                    }
+                }
+            }
             temperature = currentLocationForecastTimeFrame.getInt("temp_c");
             weatherIcon = currentLocationForecastTimeFrame.getString("wx_icon");
-            Hour h = new Hour(hour, temperature, weatherIcon);
-            timeline.add(h);
-            index++;
+            next = new Hour(hour, temperature, weatherIcon);
+            if(timePassed) {
+                timeline.add(next);
+            }
         }
     }
 
