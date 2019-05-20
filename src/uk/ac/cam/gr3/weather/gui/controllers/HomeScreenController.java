@@ -188,7 +188,8 @@ public class HomeScreenController extends FXMLController {
     private void show(HomeData homeData) {
 
         //set weatherMood
-        setWeatherMood(homeData.getWeatherIcon());
+        String weatherIcon = homeData.getWeatherIcon();
+        setWeatherMood(weatherIcon);
 
         //set temperature
         currentTemperature.setText(Integer.toString(homeData.getCurrentTemperature()));
@@ -210,8 +211,10 @@ public class HomeScreenController extends FXMLController {
         //set cloud
         cloudCoverage.setText(Integer.toString(homeData.getCloudCoverage()));
 
+        // Remove extension from icon name
+        String weatherConditionsName = weatherIcon.substring(0, weatherIcon.lastIndexOf('.'));
         //give an alert if the weather is dangerous
-        if(DangerousWeather.isDangerous(homeData.getWeatherCondition())) {
+        if(DangerousWeather.isDangerous(weatherConditionsName)) {
             Platform.runLater(() -> {
                 String warningText = String.format("The weather may be dangerous. Current conditions are %s.", homeData.getWeatherCondition());
                 Alert weatherAlert = new Alert(Alert.AlertType.WARNING, warningText, ButtonType.OK);
