@@ -29,6 +29,10 @@ import static javafx.scene.layout.Region.USE_PREF_SIZE;
 
 public class HomeScreenController extends FXMLController {
 
+    private static final int BASE_DATA = 0;
+    private static final int PEAK_DATA = 1;
+    private int current_mode = 0;
+
     public HomeScreenController(WeatherService service) {
         super(service);
     }
@@ -125,6 +129,18 @@ public class HomeScreenController extends FXMLController {
         hourlyBreakdownAnchor.heightProperty().addListener(changeClip);
     }
 
+    @Override
+    public void update() {
+        switch(current_mode) {
+            case BASE_DATA:
+                showBase();
+                break;
+            case PEAK_DATA:
+                showPeak();
+                break;
+        }
+    }
+
     private void setHSwipePane(HSwipePane pane) {
 
         hourlyBreakdownAnchor.getChildren().setAll(pane);
@@ -178,11 +194,13 @@ public class HomeScreenController extends FXMLController {
 
     //show weather data at base
     private void showBase() {
+        current_mode = BASE_DATA;
         show(service.getBaseData());
     }
 
     //show weather data at peak
     private void showPeak() {
+        current_mode = PEAK_DATA;
         show(service.getPeakData());
     }
 

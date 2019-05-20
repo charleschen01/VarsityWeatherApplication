@@ -7,6 +7,9 @@ import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import uk.ac.cam.gr3.weather.data.WeatherService;
 import uk.ac.cam.gr3.weather.data.util.DataImplementation;
+import uk.ac.cam.gr3.weather.gui.controllers.HomeScreenController;
+import uk.ac.cam.gr3.weather.gui.controllers.SnowReportController;
+import uk.ac.cam.gr3.weather.gui.controllers.WeeklyReportController;
 import uk.ac.cam.gr3.weather.gui.util.FXMLController;
 import uk.ac.cam.gr3.weather.gui.controllers.FrameController;
 import uk.ac.cam.gr3.weather.gui.util.SwipeContainer;
@@ -39,20 +42,26 @@ public class WeatherApp extends Application {
 
         Region snowReport = snowReportLoader.load();
 
+        SnowReportController snowReportController = snowReportLoader.getController();
+
         // ------------------------ Load Home Screen ------------------------
         FXMLLoader homeScreenLoader = createLoader("GUI/homeScreen.fxml", service);
 
         Region homeScreen = homeScreenLoader.load();
+
+        HomeScreenController homeScreenController = homeScreenLoader.getController();
 
         // ------------------------ Load Weekly Report ------------------------
         FXMLLoader weekLoader = createLoader("GUI/weekly.fxml", service);
 
         Region weeklyReport = weekLoader.load();
 
+        WeeklyReportController weeklyReportController = weekLoader.getController();
+
         // ------------------------ Setup Swipe Container ------------------------
         int width = (int) frame.getPrefWidth();
 
-        SwipeContainer swipeContainer = new SwipeContainer(snowReport, homeScreen, weeklyReport, width);
+        SwipeContainer swipeContainer = new SwipeContainer(snowReport, snowReportController, homeScreen, homeScreenController, weeklyReport, weeklyReportController, width);
 
         // ------------------------ Initialise controllers ------------------------
         frameController.setSwipeContainer(swipeContainer);

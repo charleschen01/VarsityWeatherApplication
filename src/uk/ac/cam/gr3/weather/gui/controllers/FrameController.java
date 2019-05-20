@@ -1,6 +1,7 @@
 package uk.ac.cam.gr3.weather.gui.controllers;
 
 import javafx.animation.*;
+import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -141,14 +142,15 @@ public class FrameController extends FXMLController {
         refreshSpinAnimation.playFromStart();
 
         new Thread(() -> {
-            try {
-                Thread.sleep(3000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            service.refresh();
+            Platform.runLater(this::update);
 
-            // TODO trigger this when the service is done refreshing
             refreshSpinAnimation.setOnFinished(null);
         }).start();
+    }
+
+    @Override
+    public void update() {
+        container.updateDisplay();
     }
 }

@@ -8,6 +8,9 @@ import javafx.scene.layout.Region;
 import javafx.util.Duration;
 import uk.ac.cam.gr3.weather.Util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class SwipeContainer extends Region {
 
     public static final int SNOW_REPORT = 0, HOME_SCREEN = 1, WEEKLY_REPORT = 2;
@@ -29,7 +32,9 @@ public class SwipeContainer extends Region {
     private boolean canScroll;
     private boolean isScrolling;
 
-    public SwipeContainer(Region snowReport, Region homeScreen, Region weeklyReport, int screenWidth) {
+    private List<FXMLController> controllers;
+
+    public SwipeContainer(Region snowReport, FXMLController snowReportController, Region homeScreen, FXMLController homeScreenController, Region weeklyReport, FXMLController weeklyReportController, int screenWidth) {
 
         this.screenWidth = screenWidth;
 
@@ -95,6 +100,11 @@ public class SwipeContainer extends Region {
 
             setDisplaying(getDisplayingRounded());
         });
+
+        controllers = new ArrayList<>();
+        controllers.add(snowReportController);
+        controllers.add(homeScreenController);
+        controllers.add(weeklyReportController);
     }
 
     private Region getScreen(int displayingRounded) {
@@ -126,5 +136,11 @@ public class SwipeContainer extends Region {
         });
 
         transition.play();
+    }
+
+    public void updateDisplay() {
+        for(FXMLController controller : controllers) {
+            controller.update();
+        }
     }
 }

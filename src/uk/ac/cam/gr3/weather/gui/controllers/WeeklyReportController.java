@@ -24,6 +24,12 @@ public class WeeklyReportController extends FXMLController {
     @Override
     protected void initialize() {
         //Initiate (and fill) the weekly report page.
+        update();
+    }
+
+    @Override
+    public void update() {
+        WeekVBox.getChildren().clear();
         for(Day d : service.getWeeklyData().getWeek()) {
             WeekVBox.getChildren().add(dayBand(d.getNameOfDay(),d.getWeatherIcon(),d.getHighestTemperature()+" °C",d.getLowestTemperature()+" °C"));
         }

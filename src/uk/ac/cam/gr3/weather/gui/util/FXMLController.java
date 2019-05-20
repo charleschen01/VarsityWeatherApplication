@@ -14,4 +14,6 @@ public abstract class FXMLController {
 
     @FXML
     protected abstract void initialize();
+
+    public abstract void update();
 }
