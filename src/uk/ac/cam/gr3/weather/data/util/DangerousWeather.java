@@ -5,6 +5,7 @@ import java.util.HashSet;
 public class DangerousWeather {
     private static final HashSet<String> conditions = new HashSet<>();
 
+    //List of dangerous weather conditions from the set the API provides
     static {
         conditions.add("Blizzard");
         conditions.add("CloudRainThunder");
