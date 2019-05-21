@@ -113,7 +113,7 @@
                   <Pane fx:id="bottomNavigationSelection" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="45.0" prefWidth="50.0" styleClass="bottom-navigation-selection" StackPane.alignment="CENTER" />
                   <HBox alignment="CENTER" maxHeight="-Infinity" pickOnBounds="false" prefHeight="45.0" spacing="30.0">
                      <children>
-                        <Button fx:id="snow" focusTraversable="false" mnemonicParsing="false" onAction="#showSnowReport" prefHeight="40.0" prefWidth="40.0" styleClass="no-bg-button">
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#showSnowReport" prefHeight="40.0" prefWidth="40.0" styleClass="no-bg-button">
                            <graphic>
                               <StackPane>
                                  <children>
@@ -127,7 +127,7 @@
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </padding>
                         </Button>
-                        <Button fx:id="home" focusTraversable="false" mnemonicParsing="false" onAction="#showHomeScreen" prefHeight="40.0" prefWidth="40.0" styleClass="no-bg-button">
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#showHomeScreen" prefHeight="40.0" prefWidth="40.0" styleClass="no-bg-button">
                            <padding>
                               <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                            </padding>
@@ -142,7 +142,7 @@
                               </StackPane>
                            </graphic>
                         </Button>
-                        <Button fx:id="weekly" focusTraversable="false" mnemonicParsing="false" onAction="#showWeeklyReport" prefHeight="40.0" prefWidth="40.0" styleClass="no-bg-button">
+                        <Button focusTraversable="false" mnemonicParsing="false" onAction="#showWeeklyReport" prefHeight="40.0" prefWidth="40.0" styleClass="no-bg-button">
                            <graphic>
                               <StackPane alignment="TOP_CENTER">
                                  <children>
