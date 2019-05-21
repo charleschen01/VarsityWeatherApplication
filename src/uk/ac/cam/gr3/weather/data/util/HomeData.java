@@ -31,9 +31,6 @@ public class HomeData {
     private final int cloudCoverage;
     private final String sunrise;
     private final String sunset;
-    private final String windDirection;
-    private final int freshSnow;
-    private final int humidity;
 
     private static final ZoneId TIME_ZONE = ZoneId.of("Europe/Paris");
 
@@ -94,9 +91,6 @@ public class HomeData {
 
         sunrise = sunData.getString("sunrise_time");
         sunset = sunData.getString("sunset_time");
-        windDirection = locationSpecificData.getString("winddir_compass");
-        freshSnow = locationSpecificData.getInt("freshsnow_cm");
-        humidity = nonLocationSpecificData.getInt("hum_pct");
     }
 
     //getters
@@ -134,17 +128,5 @@ public class HomeData {
 
     public String getSunset() {
         return sunset;
-    }
-
-    public String getWindDirection() {
-        return windDirection;
-    }
-
-    public int getFreshSnow() {
-        return freshSnow;
-    }
-
-    public int getHumidity() {
-        return humidity;
     }
 }
