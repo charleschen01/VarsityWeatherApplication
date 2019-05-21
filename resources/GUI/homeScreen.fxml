@@ -93,6 +93,11 @@
                               <Insets top="20.0" />
                            </GridPane.margin>
                         </ImageView>
+                        <ImageView fitHeight="79.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
+                           <image>
+                              <Image url="/images/Clouds-icon.png" />
+                           </image>
+                        </ImageView>
                         <HBox alignment="CENTER" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="windSpeed" text="8">
@@ -127,17 +132,7 @@
                               </Label>
                            </children>
                         </HBox>
-                        <Label fx:id="sunSetTime" text="7:00" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="79.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
-                           <image>
-                              <Image url="/images/Clouds-icon.png" />
-                           </image>
-                        </ImageView>
-                        <HBox alignment="CENTER" GridPane.rowIndex="3">
+                        <HBox alignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="cloudCoverage" text="60">
                                  <font>
@@ -154,20 +149,25 @@
                               </Label>
                            </children>
                         </HBox>
-                        <ImageView fitHeight="89.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
-                           <image>
-                              <Image url="/images/Sunset-512.png" />
-                           </image>
-                           <GridPane.margin>
-                              <Insets top="10.0" />
-                           </GridPane.margin>
-                        </ImageView>
-                        <ImageView fitHeight="90.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <ImageView fitHeight="90.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                            <image>
                               <Image url="/images/Sunrise-512.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="sunRiseTime" text="7:00" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <ImageView fitHeight="89.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <image>
+                              <Image url="/images/Sunset-512.png" />
+                           </image>
+                           <GridPane.margin>
+                              <Insets />
+                           </GridPane.margin>
+                        </ImageView>
+                        <Label fx:id="sunRiseTime" text="7:00" GridPane.rowIndex="3">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="sunSetTime" text="7:00" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
                               <Font size="22.0" />
                            </font>
