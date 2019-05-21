@@ -23,7 +23,7 @@ import uk.ac.cam.gr3.weather.data.util.Hour;
 import uk.ac.cam.gr3.weather.gui.util.FXMLController;
 import uk.ac.cam.gr3.weather.gui.util.HSwipePane;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import static javafx.scene.layout.Region.USE_PREF_SIZE;
 
@@ -147,7 +147,7 @@ public class HomeScreenController extends FXMLController {
         weatherMood.setFitWidth(300);
     }
 
-    private GridPane createHourlyBreakdown(ArrayList<Hour> timeline) { //create a pane to pass into HSwipePane
+    private GridPane createHourlyBreakdown(List<Hour> timeline) { //create a pane to pass into HSwipePane
 
         int i = 0;
 
