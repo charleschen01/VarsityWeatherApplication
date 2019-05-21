@@ -8,8 +8,10 @@ import java.util.List;
 
 public class DataImplementation implements WeatherService {
 
+    //notifies program that there has been a refresh in the data
     private final List<Runnable> listeners = new ArrayList<>();
 
+    //access data with getters
     private HomeData peakData;
     private HomeData baseData;
     private SnowData snowData;
@@ -38,12 +40,13 @@ public class DataImplementation implements WeatherService {
 
     @Override
     public void refresh() throws IOException {
+        //creates new data objects
         fetchData();
         notifyListeners();
     }
 
     private void fetchData() throws IOException {
-
+        //gets data from the API -(Allowed 10 requests per minute)
         JSONObject data = URLConnectionReader.getJSON("https://api.weatherunlocked.com/api/resortforecast/333020?app_id=5d6c6b76&app_key=5a54d2f573d149bb65b2a2b7fd05cfc3");
         JSONObject generalData = URLConnectionReader.getJSON("http://api.weatherunlocked.com/api/forecast/fr.73440?app_id=34ef604f&app_key=9e15b25a985bb34ddc8db6f973324353");
         JSONObject snowReport = URLConnectionReader.getJSON("https://api.weatherunlocked.com/api/snowreport/333020?app_id=5d6c6b76&app_key=5a54d2f573d149bb65b2a2b7fd05cfc3");
@@ -54,6 +57,7 @@ public class DataImplementation implements WeatherService {
         snowData = new SnowData(snowReport);
     }
 
+    //Getters
     @Override
     public HomeData getPeakData() {
         return peakData;
