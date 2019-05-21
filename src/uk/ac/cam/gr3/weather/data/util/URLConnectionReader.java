@@ -4,7 +4,7 @@ import org.json.JSONObject;
 import java.net.*;
 import java.io.*;
 
-//Gets a JASON object from the url given
+//Gets a JASON object from the url given - (based on the Java documentation)
 class URLConnectionReader {
     static JSONObject getJSON(String urlStr) throws IOException {
         URL url = new URL(urlStr);
