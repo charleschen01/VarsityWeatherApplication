@@ -44,6 +44,9 @@ public class FrameController extends FXMLController {
     private Pane menuBar1, menuBar2, menuBar3;
 
     @FXML
+    private Button refreshButton;
+
+    @FXML
     private SVGPath refreshSpinner;
 
     @FXML
@@ -138,6 +141,8 @@ public class FrameController extends FXMLController {
     @FXML
     private void refresh() {
 
+        refreshButton.setDisable(true);
+
         refreshSpinAnimation.setOnFinished(event -> refreshSpinAnimation.play());
         refreshSpinAnimation.playFromStart();
 
@@ -149,13 +154,14 @@ public class FrameController extends FXMLController {
             }
         };
 
-        refresh.setOnSucceeded(event -> refreshSpinAnimation.setOnFinished(null));
+        refresh.setOnSucceeded(event -> {
+            refreshSpinAnimation.setOnFinished(event1 -> refreshButton.setDisable(false));
+        });
         refresh.setOnFailed(event -> {
-            refreshSpinAnimation.setOnFinished(null);
+            refreshSpinAnimation.setOnFinished(event1 -> refreshButton.setDisable(false));
             Throwable exception = event.getSource().getException();
             System.err.println("Exception while refreshing");
             exception.printStackTrace();
-            // TODO alert user?
         });
 
         new Thread(refresh).start();

@@ -73,7 +73,7 @@
                               <String fx:value="hamburger-button" />
                            </styleClass></Button>
                         <Pane mouseTransparent="true" HBox.hgrow="ALWAYS" />
-                        <Button mnemonicParsing="false" onAction="#refresh">
+                        <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refresh">
                            <graphic>
                               <SVGPath fx:id="refreshSpinner" content="M 258 250 A 8 8 0 1 1 256.204527028082 244.94986689702142 l -4 0.75 m 4 -0.75 l 0.5 -3" fill="TRANSPARENT" stroke="BLACK" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="3.0" />
                            </graphic>
