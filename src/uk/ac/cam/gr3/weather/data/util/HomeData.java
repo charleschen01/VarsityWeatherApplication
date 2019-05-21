@@ -32,6 +32,7 @@ public class HomeData {
     private final String sunrise;
     private final String sunset;
 
+    // Time zone in Val Thorens
     private static final ZoneId TIME_ZONE = ZoneId.of("Europe/Paris");
 
     //location needs to be "upper" or "base"
@@ -45,6 +46,8 @@ public class HomeData {
         String weatherIconForecast;
 
         Hour next = null;
+
+        // Holds the position in the array where the current time's data is stored
         int currentTimeIndex = -1;
 
         for (int index = 0; index < numFutureHours; index++){
@@ -52,15 +55,17 @@ public class HomeData {
             JSONObject currentLocationForecastTimeFrame = forecastTimeFrame.getJSONObject(location);
             hour = forecastTimeFrame.getString("time");
             if(currentTimeIndex==-1) {
-                numFutureHours++;
+                numFutureHours++; // Want a certain number of hours from now, not from the start of the array
                 List<Integer> date = Arrays.stream(forecastTimeFrame.getString("date").split("/")).map(Integer::parseInt).collect(Collectors.toList());
                 List<Integer> time = Arrays.stream(hour.split(":")).map(Integer::parseInt).collect(Collectors.toList());
                 Instant now = Instant.now(Clock.systemUTC().withZone(TIME_ZONE));
                 LocalDateTime forecastHour = LocalDateTime.of(date.get(2), date.get(1), date.get(0), time.get(0), time.get(1));
                 Instant forecastHourZoned = forecastHour.atZone(TIME_ZONE).toInstant();
+                // Check whether this forecast data is before or after the current time
                 if(forecastHourZoned.isAfter(now)) {
                     currentTimeIndex = Math.max(index - 1, 0);
                     if(next != null) {
+                        // Add the data point immediately before the current time
                         timeline.add(next);
                     }
                 }

@@ -14,9 +14,6 @@ public class DangerousWeather {
         conditions.add("FreezingRain");
         conditions.add("PartCloudRainThunderDay");
         conditions.add("PartCloudSleetSnowThunderDay");
-
-        //Add for testing purposes
-        //conditions.add("Patchy light snow");
     }
 
     public static boolean isDangerous(String condition) {
