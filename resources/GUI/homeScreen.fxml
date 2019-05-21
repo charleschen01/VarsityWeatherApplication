@@ -66,15 +66,15 @@
                   </AnchorPane>
                   <GridPane>
                     <columnConstraints>
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
-                      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" prefWidth="120.0" />
+                      <ColumnConstraints halignment="CENTER" prefWidth="120.0" />
+                      <ColumnConstraints halignment="CENTER" prefWidth="120.0" />
+                      <ColumnConstraints halignment="CENTER" prefWidth="120.0" />
                     </columnConstraints>
                     <rowConstraints>
-                      <RowConstraints prefHeight="90.0" vgrow="SOMETIMES" />
-                      <RowConstraints prefHeight="40.0" vgrow="SOMETIMES" />
-                      <RowConstraints prefHeight="90.0" vgrow="SOMETIMES" />
-                        <RowConstraints prefHeight="40.0" vgrow="SOMETIMES" />
+                      <RowConstraints prefHeight="90.0" />
+                      <RowConstraints prefHeight="40.0" />
+                      <RowConstraints prefHeight="90.0" />
+                      <RowConstraints prefHeight="40.0" />
                     </rowConstraints>
                      <children>
                         <ImageView fitHeight="85.0" fitWidth="71.0" pickOnBounds="true" preserveRatio="true">
@@ -93,63 +93,67 @@
                               <Insets top="20.0" />
                            </GridPane.margin>
                         </ImageView>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="1">
+                        <HBox alignment="CENTER" GridPane.rowIndex="1">
                            <children>
-                              <Label fx:id="windSpeed" alignment="CENTER_RIGHT" prefHeight="45.0" prefWidth="50.0" text="8" textAlignment="RIGHT">
+                              <Label fx:id="windSpeed" text="8">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="54.0" text="km/h">
+                              <Label text="km/h">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="22.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <HBox alignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
-                              <Label fx:id="visibility" alignment="CENTER_RIGHT" prefHeight="47.0" prefWidth="56.0" text="55">
+                              <Label fx:id="visibility" text="55">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="45.0" prefWidth="34.0" text="km">
+                              <Label text="km">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="22.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets left="2.0" />
+                                 </HBox.margin>
                               </Label>
                            </children>
                         </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                           <children>
-                              <Label fx:id="sunSetTime" alignment="CENTER" prefHeight="48.0" prefWidth="120.0" text="7:00">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                           </children>
-                        </HBox>
+                        <Label fx:id="sunSetTime" text="7:00" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="22.0" />
+                           </font>
+                        </Label>
                         <ImageView fitHeight="79.0" fitWidth="103.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
                            <image>
                               <Image url="/images/Clouds-icon.png" />
                            </image>
                         </ImageView>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="3">
+                        <HBox alignment="CENTER" GridPane.rowIndex="3">
                            <children>
-                              <Label fx:id="cloudCoverage" alignment="CENTER_RIGHT" prefHeight="60.0" prefWidth="59.0" text="60">
+                              <Label fx:id="cloudCoverage" text="60">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="22.0" />
                                  </font>
                               </Label>
-                              <Label alignment="CENTER" prefHeight="57.0" prefWidth="28.0" text="\%">
+                              <Label text="\%">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="22.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets left="5.0" />
+                                 </HBox.margin>
                               </Label>
                            </children>
                         </HBox>
-                        <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <ImageView fitHeight="89.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2">
                            <image>
                               <Image url="/images/Sunset-512.png" />
@@ -163,9 +167,9 @@
                               <Image url="/images/Sunrise-512.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="sunRiseTime" alignment="CENTER" prefHeight="41.0" prefWidth="134.0" text="7:00" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Label fx:id="sunRiseTime" text="7:00" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="22.0" />
                            </font>
                         </Label>
                      </children>
