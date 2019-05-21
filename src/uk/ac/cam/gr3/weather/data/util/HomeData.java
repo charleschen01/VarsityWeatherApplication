@@ -50,6 +50,8 @@ public class HomeData {
         // Holds the position in the array where the current time's data is stored
         int currentTimeIndex = -1;
 
+
+        //Goes through each 3rd hour in the next 24 hours and creates a hour with all the needed data
         for (int index = 0; index < numFutureHours; index++){
             JSONObject forecastTimeFrame = forecastData.getJSONObject(index);
             JSONObject currentLocationForecastTimeFrame = forecastTimeFrame.getJSONObject(location);

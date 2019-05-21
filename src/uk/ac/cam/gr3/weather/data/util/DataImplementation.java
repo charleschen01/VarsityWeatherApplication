@@ -38,9 +38,7 @@ public class DataImplementation implements WeatherService {
 
     @Override
     public void refresh() throws IOException {
-
         fetchData();
-
         notifyListeners();
     }
 

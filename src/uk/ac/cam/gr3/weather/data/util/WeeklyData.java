@@ -14,12 +14,15 @@ public class WeeklyData {
     WeeklyData(JSONArray weekForecast) {
         int numFutureDays = 7;
         List<Day> week = new ArrayList<>();
+
+        //Goes through each day of the week and creates a day with all the needed data
         for (int i = 0; i < numFutureDays; i++) {
             JSONObject dayForecast = weekForecast.getJSONObject(i);
             String date = dayForecast.getString("date");
             int lowestTemperature = dayForecast.getInt("temp_min_c");
             int highestTemperature = dayForecast.getInt("temp_max_c");
 
+            //Gets the midday temperature of the day -(except for the last day due to API data limitations)
             String weatherIcon;
             try {
                 weatherIcon = dayForecast.getJSONArray("Timeframes").getJSONObject(4).getString("wx_icon");
