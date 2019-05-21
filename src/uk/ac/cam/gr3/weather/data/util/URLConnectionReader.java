@@ -5,15 +5,12 @@ import java.net.*;
 import java.io.*;
 
 //Gets a JASON object from the url given
-public class URLConnectionReader {
-    public static JSONObject getJSON(String urlStr) throws IOException {
+class URLConnectionReader {
+    static JSONObject getJSON(String urlStr) throws IOException {
         URL url = new URL(urlStr);
         HttpURLConnection con = (HttpURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         con.setRequestProperty("Content-Type", "application/json");
-        String contentType = con.getHeaderField("i");
-
-        int status = con.getResponseCode();
 
         BufferedReader in = new BufferedReader(
                 new InputStreamReader(con.getInputStream()));

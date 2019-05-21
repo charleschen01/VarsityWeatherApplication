@@ -126,8 +126,7 @@ public class HomeScreenController extends FXMLController {
     }
 
     @Override
-    public void update() {
-
+    protected void update() {
         if (altitudeSelect.getSelectedToggle() == baseButton)
             showBase();
         else if (altitudeSelect.getSelectedToggle() == peakButton)

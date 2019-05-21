@@ -30,7 +30,8 @@ public class SnowReportController extends FXMLController {
         update();
     }
 
-    public void update() {
+    @Override
+    protected void update() {
 
         SnowData snowData = service.getSnowData();
 
