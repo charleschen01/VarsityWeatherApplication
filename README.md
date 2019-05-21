@@ -8,6 +8,7 @@ This code has been tested on Windows, Mac and Linux environments.
 - The code comes with project files for IntelliJ IDEA
 - Simply load the project directory into IntelliJ and run the code from the WeatherApp.java file
 - You may need to install JavaFX onto your system if it is not installed already
+- You can also run the .jar located at out\artifacts\Interaction_Design_jar\Interaction Design.jar
 
 ## Used libraries:
 - The project uses the JavaFX library to implement the GUI
