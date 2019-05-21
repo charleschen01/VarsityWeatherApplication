@@ -41,7 +41,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.SVGPath?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -55,23 +54,6 @@
                   <AnchorPane fx:id="swipeAnchor" />
                   <HBox maxHeight="-Infinity" pickOnBounds="false" StackPane.alignment="TOP_CENTER">
                      <children>
-                        <Button fx:id="menu" focusTraversable="false" mnemonicParsing="false" onAction="#toggleMenu">
-                           <graphic>
-                              <VBox alignment="CENTER" prefHeight="15.0" prefWidth="16.0" spacing="3.0">
-                                 <children>
-                                    <Pane fx:id="menuBar1" prefHeight="3.0" styleClass="hamburger-button-bar" />
-                                    <Pane fx:id="menuBar2" prefHeight="3.0" styleClass="hamburger-button-bar" />
-                                    <Pane fx:id="menuBar3" prefHeight="3.0" styleClass="hamburger-button-bar" />
-                                 </children>
-                              </VBox>
-                           </graphic>
-                           <padding>
-                              <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
-                           </padding>
-                           <styleClass>
-                              <String fx:value="no-bg-button" />
-                              <String fx:value="hamburger-button" />
-                           </styleClass></Button>
                         <Pane mouseTransparent="true" HBox.hgrow="ALWAYS" />
                         <Button fx:id="refreshButton" mnemonicParsing="false" onAction="#refresh">
                            <graphic>

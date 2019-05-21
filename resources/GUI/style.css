@@ -9,18 +9,6 @@
     -fx-background-color: transparent;
 }
 
-.hamburger-button:hover .hamburger-button-bar {
-
-    -fx-scale-x: 1.16;
-    -fx-scale-y: 1.16;
-}
-
-.hamburger-button-bar {
-
-    -fx-background-color: black;
-    -fx-background-radius: 2px;
-}
-
 .refresh-button:hover #refreshSpinner {
     -fx-scale-x: 1.16;
     -fx-scale-y: 1.16;

@@ -1,10 +1,6 @@
 package uk.ac.cam.gr3.weather.gui.controllers;
 
 import javafx.animation.*;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.property.SimpleDoubleProperty;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -21,13 +17,6 @@ public class FrameController extends FXMLController {
 
     private SwipeContainer container;
 
-    private DoubleProperty menuBarTranslateY = new SimpleDoubleProperty(0);
-    private DoubleProperty menuBarRotate = new SimpleDoubleProperty(0);
-
-    private BooleanProperty isShowingMenu = new SimpleBooleanProperty(false);
-
-    private Transition menuToggleTransition;
-
     private RotateTransition refreshSpinAnimation;
 
     public FrameController(WeatherService service) {
@@ -36,12 +25,6 @@ public class FrameController extends FXMLController {
 
     @FXML
     private AnchorPane swipeAnchor;
-
-    @FXML
-    private Button menu;
-
-    @FXML
-    private Pane menuBar1, menuBar2, menuBar3;
 
     @FXML
     private Button refreshButton;
@@ -54,41 +37,6 @@ public class FrameController extends FXMLController {
 
     @Override
     protected void initialize() {
-
-        menuBar1.translateYProperty().bind(menuBarTranslateY);
-        menuBar3.translateYProperty().bind(menuBarTranslateY.negate());
-
-        menuBar1.rotateProperty().bind(menuBarRotate);
-        menuBar3.rotateProperty().bind(menuBarRotate.negate());
-
-        menuBar2.visibleProperty().bind(menuBarRotate.isEqualTo(0));
-
-        Transition translate = new Transition() {
-
-            {
-                setCycleDuration(Duration.millis(100));
-            }
-
-            @Override
-            protected void interpolate(double frac) {
-                menuBarTranslateY.set(frac * 6);
-            }
-        };
-
-        Transition rotate = new Transition() {
-
-            {
-                setCycleDuration(Duration.millis(100));
-            }
-
-            @Override
-            protected void interpolate(double frac) {
-                menuBarRotate.set(frac * 45);
-            }
-        };
-
-        // TODO wrap with a parallel transition to pull the menu in / out of the screen
-        menuToggleTransition = new SequentialTransition(translate, rotate);
 
         refreshSpinAnimation = new RotateTransition(Duration.millis(500), refreshSpinner);
         refreshSpinAnimation.setByAngle(360);
@@ -123,19 +71,6 @@ public class FrameController extends FXMLController {
     private void showWeeklyReport() {
 
         container.setDisplaying(SwipeContainer.WEEKLY_REPORT);
-    }
-
-    @FXML
-    private void toggleMenu() {
-
-        boolean isShowing = isShowingMenu.get();
-
-        int rate = isShowing ? -1 : 1;
-
-        menuToggleTransition.setRate(rate);
-        menuToggleTransition.play();
-
-        isShowingMenu.set(!isShowing);
     }
 
     @FXML
