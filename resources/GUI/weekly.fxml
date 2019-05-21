@@ -32,12 +32,13 @@
   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 -->
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="360.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="uk.ac.cam.gr3.weather.gui.controllers.WeeklyReportController">
    <children>
-      <VBox fx:id="WeekVBox" layoutX="113.0" layoutY="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <VBox fx:id="WeekVBox" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <children>
             <!--<HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="360.0">
                <children>
@@ -52,6 +53,9 @@
                </children>
             </HBox> -->
          </children>
+         <padding>
+            <Insets right="10.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>
