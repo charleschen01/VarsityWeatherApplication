@@ -70,7 +70,7 @@ public class HomeScreenController extends FXMLController {
     private AnchorPane hourlyBreakdownAnchor;
 
     @Override
-    protected void initialize() {
+    protected void initialize() {  //set the homescreen upon first opening it
 
         showBase();
 
@@ -140,17 +140,17 @@ public class HomeScreenController extends FXMLController {
         Util.fitToAnchorPane(pane);
     }
 
+    //set the main weathermood image on the homescreen
     private void setWeatherMood(String url) {
         weatherMood.setImage(new Image("/WeatherIcons/" + url));
         weatherMood.setPreserveRatio(true);
         weatherMood.setFitWidth(300);
     }
 
-    private GridPane createHourlyBreakdown(List<Hour> timeline) { //create a pane to pass into HSwipePane
+    private GridPane createHourlyBreakdown(List<Hour> timeline) { //create a pane that contains hourly breakdown to pass into HSwipePane
 
         int i = 0;
 
-        //create table
         GridPane table = new GridPane();
 
         for (Hour hour:timeline) {
@@ -160,7 +160,7 @@ public class HomeScreenController extends FXMLController {
             //add column constraints
             table.getColumnConstraints().add(new ColumnConstraints(USE_PREF_SIZE, 100, USE_PREF_SIZE, Priority.SOMETIMES, HPos.CENTER, true));
 
-            //create weather mood
+            //create weather mood image
             ImageView mood = new ImageView("/WeatherIcons/" + hour.getWeatherIcon());
             mood.setFitWidth(100);
             mood.setPreserveRatio(true);
