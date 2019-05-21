@@ -4,12 +4,11 @@ import org.json.JSONObject;
 
 public class SnowData {
     //Use the getter methods below to access the data
-    private String snowConditions;
-    private String lastSnowed;
-    private int percentageOpenRuns;
-    private double snowFallTop;
-    private double snowFallBottom;
-
+    private final String snowConditions;
+    private final String lastSnowed;
+    private final int percentageOpenRuns;
+    private final double snowFallTop;
+    private final double snowFallBottom;
 
     SnowData(JSONObject data) {
         //updates the attributes with the data from the Snow report
@@ -39,27 +38,6 @@ public class SnowData {
 
     public double getSnowFallBottom() {
         return snowFallBottom;
-    }
-
-    //setters
-    void setSnowConditions(String snowConditions) {
-        this.snowConditions = snowConditions;
-    }
-
-    void setLastSnowed(String lastSnowed) {
-        this.lastSnowed = lastSnowed;
-    }
-
-    void setPercentageOpenRuns(int percentageOpenRuns) {
-        this.percentageOpenRuns = percentageOpenRuns;
-    }
-
-    void setSnowFallTop(double snowFallTop) {
-        this.snowFallTop = snowFallTop;
-    }
-
-    void setSnowFallBottom(double snowFallBottom) {
-        this.snowFallBottom = snowFallBottom;
     }
 }
 

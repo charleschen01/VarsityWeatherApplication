@@ -3,9 +3,9 @@ package uk.ac.cam.gr3.weather.data.util;
 //Creates a hour for the temperature timeline on the home page.
 public class Hour {
     //If you want to access these use the getter methods below.
-    private String hour; //24 hour clock in the format HH:MM
-    private int temperature;
-    private String weatherIcon;
+    private final String hour; //24 hour clock in the format HH:MM
+    private final int temperature;
+    private final String weatherIcon;
 
     //constructor
     Hour(String hour, int temperature, String weatherIcon){
@@ -25,18 +25,5 @@ public class Hour {
 
     public String getWeatherIcon() {
         return weatherIcon;
-    }
-
-    //setters
-    void setHour(String hour) {
-        this.hour = hour;
-    }
-
-    void setTemperature(int temperature) {
-        this.temperature = temperature;
-    }
-
-    void setWeatherIcon(String weatherIcon) {
-        this.weatherIcon = weatherIcon;
     }
 }
